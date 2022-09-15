@@ -1,0 +1,4 @@
+my:
+  greeting: Hello world2!
+  my.number: 1002
+  new.property: new.property no tiene valor2
