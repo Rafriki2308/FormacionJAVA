@@ -31,26 +31,31 @@ public class CheckData {
         return true;
     }
 
-    public int operateNumbers(String line){
+    public String operateNumbers(String line){
         String[] lineDivided = line.split(" ");
         String operator = lineDivided[1];
         int result;
 
         if(operator.contains("+")){
             result = Integer.parseInt(lineDivided[0]) + Integer.parseInt(lineDivided[2]);
-            return result;
+            return String.valueOf(result);
         }
 
         if(operator.contains("-")) {
             result = Integer.parseInt(lineDivided[0]) - Integer.parseInt(lineDivided[2]);
-            return result;
+            return String.valueOf(result);
         }
         if(operator.contains("/")) {
             result = Integer.parseInt(lineDivided[0]) / Integer.parseInt(lineDivided[2]);
-            return result;
+            return String.valueOf(result);
         }
 
-        return Integer.parseInt(lineDivided[0]) * Integer.parseInt(lineDivided[2]);
+        if(operator.contains("*")) {
+            result = Integer.parseInt(lineDivided[0]) * Integer.parseInt(lineDivided[2]);
+            return String.valueOf(result);
+        }
+
+        return "Operador no válido";
 
     }
 
