@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "ac121c0d-4a28-441b-a9da-9047be2eaae5",
+		"name": "Ej6.1-simple-controllers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user/{name}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/Rafael",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"Rafael"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "useradd",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"rafael\",\r\n    \"edad\": \"41\",\r\n    \"ciudad\": \"Granada\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/useradd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"useradd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
