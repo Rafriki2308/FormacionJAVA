@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "e404846c-46f9-4636-819a-f28ccfb88465",
+		"name": "Ej6.2-person-controllers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Persona",
+			"item": [
+				{
+					"name": "addPersona",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador1/addPersona?nombre=Rafael&ciudad=Granada&edad=40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador1",
+								"addPersona"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Rafael"
+								},
+								{
+									"key": "ciudad",
+									"value": "Granada"
+								},
+								{
+									"key": "edad",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLastPersona",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador2/getPersona",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador2",
+								"getPersona"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ciudad",
+			"item": [
+				{
+					"name": "addCiudad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador1/addCiudad?nombre=Madrid&numeroHabitantes=1500000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador1",
+								"addCiudad"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Madrid"
+								},
+								{
+									"key": "numeroHabitantes",
+									"value": "1500000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCiudades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador2/getCiudades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador2",
+								"getCiudades"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bean",
+			"item": [
+				{
+					"name": "bean1",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "bean2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador/bean/bean2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador",
+								"bean",
+								"bean2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bean3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/controlador/bean/bean3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"controlador",
+								"bean",
+								"bean3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
