@@ -28,12 +28,6 @@ public class ReadWrite {
         linesList.forEach((l)->{
 
             System.out.println((String) l + ": " + chd.tidyLines((String)l));
-            /*if(chd.isNumeric((String) l)) {
-                System.out.println(chd.operateNumbers((String)l));
-            }
-            if(chd.isString((String) l)) {
-                System.out.println(chd.concactString((String)l));
-            }*/
         });
 
     }
