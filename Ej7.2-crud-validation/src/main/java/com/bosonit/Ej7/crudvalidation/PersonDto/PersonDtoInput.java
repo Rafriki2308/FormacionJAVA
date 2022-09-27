@@ -2,17 +2,15 @@ package com.bosonit.Ej7.crudvalidation.PersonDto;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class PersonDto implements Serializable {
+public class PersonDtoInput implements Serializable {
 
-    private int id_persona;
+    private Integer id;
 
-    private String usuario;
+    private String user;
 
     private String password;
 

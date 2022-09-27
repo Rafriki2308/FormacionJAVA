@@ -9,19 +9,13 @@ import java.util.List;
 @Component
 public class PersonDtoResponse {
 
-    private static List<PersonDto> listPersonDto = new ArrayList<>();
+    private static List<PersonDtoOutput> listPersonDtoOutput = new ArrayList<>();
 
-    public List<PersonDto> getListPersonDto(){
-        return listPersonDto;
+    public List<PersonDtoOutput> mappingPersonToPersonDtoOutput(List<Person> listPerson){
+        for (Person p: listPerson) {
+            listPersonDtoOutput.add(new PersonDtoOutput(p));
+        }
+        return listPersonDtoOutput;
     }
-
-    public void setListPersonDto(List<PersonDto> listPersonDto){
-        this.listPersonDto = listPersonDto;
-    }
-
-    public void addListPersonDto(PersonDto personDto){
-        this.listPersonDto.add(personDto);
-    }
-
 
 }

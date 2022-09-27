@@ -1,23 +1,27 @@
 package com.bosonit.Ej7.crudvalidation.Model;
 
+import com.bosonit.Ej7.crudvalidation.PersonDto.PersonDtoInput;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table (name="persona")
 public class Person implements java.io.Serializable {
 
     @Id
-    private int id_persona;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_persona")
+    private Integer id;
 
-    @Column
-    private String usuario;
+    @Column (name= "usuario")
+    private String user;
 
     @Column
     private String password;
@@ -48,6 +52,23 @@ public class Person implements java.io.Serializable {
 
     @Column
     private Date termination_date;
+
+
+    public Person(PersonDtoInput persona) {
+
+            setId(persona.getId());
+            setUser(persona.getUser());
+            setPassword(persona.getPassword());
+            setName(persona.getName());
+            setSurname(persona.getSurname());
+            setCompany_email(persona.getCompany_email());
+            setPersonal_email(persona.getPersonal_email());
+            setCity(persona.getCity());
+            setActive(persona.getActive());
+            setCreated_date(persona.getCreated_date());
+            setImagen_url(persona.getImagen_url());
+            setTermination_date(persona.getTermination_date());
+        }
 
 
 }
