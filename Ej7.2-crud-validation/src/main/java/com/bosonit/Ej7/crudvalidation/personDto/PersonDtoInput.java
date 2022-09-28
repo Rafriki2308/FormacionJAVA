@@ -1,4 +1,4 @@
-package com.bosonit.Ej7.crudvalidation.PersonDto;
+package com.bosonit.Ej7.crudvalidation.personDto;
 
 import lombok.Data;
 

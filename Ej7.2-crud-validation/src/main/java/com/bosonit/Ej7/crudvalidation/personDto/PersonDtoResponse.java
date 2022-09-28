@@ -1,6 +1,6 @@
-package com.bosonit.Ej7.crudvalidation.PersonDto;
+package com.bosonit.Ej7.crudvalidation.personDto;
 
-import com.bosonit.Ej7.crudvalidation.Model.Person;
+import com.bosonit.Ej7.crudvalidation.model.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.List;
 @Component
 public class PersonDtoResponse {
 
-    private static List<PersonDtoOutput> listPersonDtoOutput = new ArrayList<>();
-
     public List<PersonDtoOutput> mappingPersonToPersonDtoOutput(List<Person> listPerson){
+
+        List<PersonDtoOutput> listPersonDtoOutput = new ArrayList<>();
         for (Person p: listPerson) {
             listPersonDtoOutput.add(new PersonDtoOutput(p));
         }

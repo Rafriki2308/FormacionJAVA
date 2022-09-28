@@ -1,10 +1,11 @@
-package com.bosonit.Ej7.crudvalidation.Services;
+package com.bosonit.Ej7.crudvalidation.services;
 
-import com.bosonit.Ej7.crudvalidation.Model.Person;
-import com.bosonit.Ej7.crudvalidation.PersonDto.PersonDtoInput;
-import com.bosonit.Ej7.crudvalidation.PersonDto.PersonDtoOutput;
-import com.bosonit.Ej7.crudvalidation.PersonDto.PersonDtoResponse;
-import com.bosonit.Ej7.crudvalidation.Repository.PersonRepository;
+import com.bosonit.Ej7.crudvalidation.exception.EntityNotFoundException;
+import com.bosonit.Ej7.crudvalidation.model.Person;
+import com.bosonit.Ej7.crudvalidation.personDto.PersonDtoInput;
+import com.bosonit.Ej7.crudvalidation.personDto.PersonDtoOutput;
+import com.bosonit.Ej7.crudvalidation.personDto.PersonDtoResponse;
+import com.bosonit.Ej7.crudvalidation.repository.PersonRepository;
 import com.bosonit.Ej7.crudvalidation.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,11 +31,17 @@ public class ServiceRepository {
         return new PersonDtoOutput(personDtoInput);
     }
 
-    public PersonDtoOutput getPersonById(Integer id){
+    public PersonDtoOutput getPersonById(Integer id) throws EntityNotFoundException {
+        if(personRepository.findPersonaById(id)==null) {
+            throw new EntityNotFoundException("El usuario no ha sido encontrado");
+        }
         return new PersonDtoOutput(personRepository.findPersonaById(id));
     }
 
     public PersonDtoOutput getPersonByUser(String name){
+        if(personRepository.findByUser(name)==null) {
+            throw new EntityNotFoundException("El usuario no ha sido encontrado");
+        }
         return new PersonDtoOutput(personRepository.findByUser(name));
     }
 
@@ -42,6 +49,9 @@ public class ServiceRepository {
         return personDtoResponse.mappingPersonToPersonDtoOutput(personRepository.findAll());
     }
     public void deletePersonById(Integer id){
+        if(personRepository.findPersonaById(id)==null) {
+            throw new EntityNotFoundException("El usuario no ha sido encontrado");
+        }
         personRepository.delete(personRepository.findPersonaById(id));
     }
 

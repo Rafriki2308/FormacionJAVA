@@ -1,6 +1,6 @@
-package com.bosonit.Ej7.crudvalidation.Model;
+package com.bosonit.Ej7.crudvalidation.model;
 
-import com.bosonit.Ej7.crudvalidation.PersonDto.PersonDtoInput;
+import com.bosonit.Ej7.crudvalidation.personDto.PersonDtoInput;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
