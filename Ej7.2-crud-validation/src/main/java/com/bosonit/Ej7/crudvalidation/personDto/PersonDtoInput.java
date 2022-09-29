@@ -8,8 +8,6 @@ import java.util.Date;
 @Data
 public class PersonDtoInput implements Serializable {
 
-    private Integer id;
-
     private String user;
 
     private String password;

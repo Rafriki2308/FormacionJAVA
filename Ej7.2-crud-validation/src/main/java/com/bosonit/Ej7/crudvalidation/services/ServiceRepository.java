@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ServiceRepository {
+public class ServiceRepository{
 
     @Autowired
     private PersonRepository personRepository;
@@ -46,7 +46,7 @@ public class ServiceRepository {
     }
 
     public List<PersonDtoOutput> getAllPeople(){
-        return personDtoResponse.mappingPersonToPersonDtoOutput(personRepository.findAll());
+         return personDtoResponse.mappingPersonToPersonDtoOutput(personRepository.findAll());
     }
     public void deletePersonById(Integer id){
         if(personRepository.findPersonaById(id)==null) {

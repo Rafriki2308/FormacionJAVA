@@ -32,7 +32,7 @@ public class PersonDtoOutput implements Serializable {
     private Date termination_date;
 
     public PersonDtoOutput(PersonDtoInput persona) {
-        setId(persona.getId());
+
         setUser(persona.getUser());
         setName(persona.getName());
         setSurname(persona.getSurname());

@@ -56,7 +56,6 @@ public class Person implements java.io.Serializable {
 
     public Person(PersonDtoInput persona) {
 
-            setId(persona.getId());
             setUser(persona.getUser());
             setPassword(persona.getPassword());
             setName(persona.getName());

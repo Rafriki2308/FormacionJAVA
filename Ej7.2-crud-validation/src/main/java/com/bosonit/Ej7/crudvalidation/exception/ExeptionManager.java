@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 public class ExeptionManager {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<CustomError> methodEntityNotFoundException(HttpServletRequest request, EntityNotFoundException e) {
+    public ResponseEntity<CustomError> methodEntityNotFoundException(EntityNotFoundException e) {
         CustomError customErrorInfo = new CustomError(HttpStatus.NOT_FOUND.value(), e.getMessage());
         return new ResponseEntity<>(customErrorInfo, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UnprocessableEntityException.class)
-    public ResponseEntity<CustomError> methodUnprocessableEntityException(HttpServletRequest request, UnprocessableEntityException e) {
+    public ResponseEntity<CustomError> methodUnprocessableEntityException(UnprocessableEntityException e) {
         CustomError customErrorInfo = new CustomError(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage());
         return new ResponseEntity<>(customErrorInfo, HttpStatus.UNPROCESSABLE_ENTITY);
     }
-
 
 }
