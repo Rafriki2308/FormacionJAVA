@@ -1,7 +1,7 @@
 package com.bosonit.Ej7.crudvalidation.validator;
 
-import com.bosonit.Ej7.crudvalidation.exception.UnprocessableEntityException;
-import com.bosonit.Ej7.crudvalidation.personDto.PersonDtoInput;
+import com.bosonit.Ej7.crudvalidation.exceptions.UnprocessableEntityException;
+import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -37,7 +37,7 @@ public class Validator {
         throw new UnprocessableEntityException("El es menor de 6 caracteres o mayor de 11 caracteres");
     }
 
-    public Boolean checkPersonDtoImput(PersonDtoInput personDtoInput) {
+    public Boolean checkPersonDtoImput(PersonInputDto personDtoInput) {
         Boolean userIsValid = null;
         try {
             userIsValid = checkLength(personDtoInput.getUser()) && checkNullField(personDtoInput.getUser());
