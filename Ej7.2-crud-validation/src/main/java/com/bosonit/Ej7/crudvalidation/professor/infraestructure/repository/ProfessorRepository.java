@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProfessorRepository extends JpaRepository<Professor, String> {
 
     Professor findProfessorById(String id);
+
+    Professor save(Professor professor);
 }

@@ -3,13 +3,14 @@ package com.bosonit.Ej7.crudvalidation.subject.infraestructure.controller.Output
 import org.springframework.stereotype.Component;
 import com.bosonit.Ej7.crudvalidation.model.Subject;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class SubjectOutputDtoResponse {
 
-    public List<SubjectOutputDto>mappingSubjectToSubjectOutputDto(List<Subject> listSubject){
+    public static List<SubjectOutputDto>mappingSubjectToSubjectOutputDto(List<Subject> listSubject){
 
         List<SubjectOutputDto> listSubjectOutputDto = new ArrayList<>();
         for (Subject s: listSubject) {
@@ -17,4 +18,5 @@ public class SubjectOutputDtoResponse {
         }
         return listSubjectOutputDto;
     }
+
 }

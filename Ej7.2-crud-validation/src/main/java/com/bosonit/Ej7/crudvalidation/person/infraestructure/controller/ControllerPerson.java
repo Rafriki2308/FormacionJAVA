@@ -45,9 +45,9 @@ public class ControllerPerson {
     public void deletePersonById(@PathVariable String id){
         servicePersonRepository.deletePersonById(id);}
 
-    @PutMapping("")
-    public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput){
-        return servicePersonRepository.modifyPerson(personDtoInput);
+    @PutMapping("/{id}")
+    public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput, @PathVariable String id){
+        return servicePersonRepository.modifyPerson(personDtoInput, id);
     }
 
 }

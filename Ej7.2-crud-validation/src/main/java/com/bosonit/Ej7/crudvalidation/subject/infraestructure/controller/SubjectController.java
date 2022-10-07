@@ -39,8 +39,8 @@ public class SubjectController {
     public void deleteSubjectById(@PathVariable String id){
         subjectServiceImp.deleteSubjectById(id);}
 
-    @PutMapping("")
-    public SubjectOutputDto updateSubject(@RequestBody SubjectInputDto subjectInputDto){
-        return subjectServiceImp.modifySubject(subjectInputDto);
+    @PutMapping("/{id}")
+    public SubjectOutputDto updateSubject(@RequestBody SubjectInputDto subjectInputDto, @PathVariable String id){
+        return subjectServiceImp.modifySubject(subjectInputDto, id);
     }
 }

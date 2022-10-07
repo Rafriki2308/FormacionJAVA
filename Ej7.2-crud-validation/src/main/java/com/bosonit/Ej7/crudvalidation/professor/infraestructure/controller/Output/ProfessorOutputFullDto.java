@@ -4,7 +4,10 @@ import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output.P
 import com.bosonit.Ej7.crudvalidation.professor.domain.Professor;
 import com.bosonit.Ej7.crudvalidation.person.domain.Person;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.input.ProfessorInputDto;
+import com.bosonit.Ej7.crudvalidation.student.domain.Student;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 
@@ -18,6 +21,8 @@ public class ProfessorOutputFullDto extends ProfessorOutputDto{
 
     private String branch;
 
+    private List<Student> students;
+
     public ProfessorOutputFullDto(Professor professor){
 
         setId(professor.getId());
@@ -26,11 +31,4 @@ public class ProfessorOutputFullDto extends ProfessorOutputDto{
         setBranch(professor.getBranch());
     }
 
-    public ProfessorOutputFullDto(ProfessorInputDto professorInputDto, Person person){
-
-        setPerson(new PersonOutputDto(person));
-        setComments(professorInputDto.getComments());
-        setBranch(professorInputDto.getBranch());
-
-    }
 }

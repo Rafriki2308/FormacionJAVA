@@ -15,5 +15,5 @@ public interface SubjectService {
 
     public void deleteSubjectById(String idSubject);
 
-    public SubjectOutputDto modifySubject(SubjectInputDto subjectInputDto);
+    public SubjectOutputDto modifySubject(SubjectInputDto subjectInputDto, String idSubject);
 }

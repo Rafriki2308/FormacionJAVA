@@ -2,8 +2,13 @@ package com.bosonit.Ej7.crudvalidation.subject.infraestructure.controller.Output
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import com.bosonit.Ej7.crudvalidation.model.Subject;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentOutputSimpleDto;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentResponseDto;
 import lombok.Data;
+import org.hibernate.mapping.Subclass;
 
 @Data
 public class SubjectOutputDto implements Serializable {
@@ -11,13 +16,7 @@ public class SubjectOutputDto implements Serializable {
 
     private String id;
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_profesor")
-    Professor professor;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_estudiante")
-    Student student;*/
+    private List<StudentOutputSimpleDto> students;
 
     private String nameSubject;
 
@@ -33,6 +32,6 @@ public class SubjectOutputDto implements Serializable {
         setComment(subject.getComment());
         setInitial_date(subject.getInitialDate());
         setFinish_date(subject.getFinishDate());
-
+        setStudents(StudentResponseDto.mappingStudentToStudentDtoOutputSimple(subject.getStudents()));
     }
 }

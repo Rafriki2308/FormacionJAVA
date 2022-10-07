@@ -1,12 +1,17 @@
 package com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output;
 
-import com.bosonit.Ej7.crudvalidation.person.domain.Person;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
 import com.bosonit.Ej7.crudvalidation.student.domain.Student;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output.PersonOutputDto;
-import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.input.StudentInput;
+import com.bosonit.Ej7.crudvalidation.subject.infraestructure.controller.Output.SubjectOutputDto;
+import com.bosonit.Ej7.crudvalidation.subject.infraestructure.controller.Output.SubjectOutputDtoResponse;
+import com.bosonit.Ej7.crudvalidation.model.Subject;
 import lombok.Data;
 
-import java.io.Serializable;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class StudentOutputFullDto extends StudentOutputDto  {
@@ -21,13 +26,10 @@ public class StudentOutputFullDto extends StudentOutputDto  {
 
     private String branch;
 
-    public StudentOutputFullDto(StudentInput studentDtoInput, Person person){
+    private ProfessorOutputFullDto professor;
 
-        setPerson(new PersonOutputDto(person));
-        setComents(studentDtoInput.getComents());
-        setNumHoursWeek(studentDtoInput.getNumHoursWeek());
-        setBranch(studentDtoInput.getBranch());
-    }
+    private List<SubjectOutputDto> subjects = new ArrayList<>();
+
 
     public StudentOutputFullDto(Student student){
 
@@ -36,6 +38,10 @@ public class StudentOutputFullDto extends StudentOutputDto  {
         setNumHoursWeek(student.getNumHoursWeek());
         setComents(student.getComents());
         setBranch(student.getBranch());
+        setProfessor(new ProfessorOutputFullDto(student.getProfessor()));
+        //Transforma una lista de Subject en tipo subjectDto.
+        setSubjects(SubjectOutputDtoResponse.mappingSubjectToSubjectOutputDto(student.getSubjects()));
+
     }
 
 }

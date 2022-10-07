@@ -1,6 +1,6 @@
 package com.bosonit.Ej7.crudvalidation.student.infraestructure.controller;
 
-import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.input.StudentInput;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.input.StudentInputDto;
 import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentOutputDto;
 import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentOutputFullDto;
 import com.bosonit.Ej7.crudvalidation.exceptions.UnprocessableEntityException;
@@ -18,7 +18,7 @@ public class ControllerStudent {
     private StudentServiceImp serviceStudentRepository;
 
     @PostMapping("/{idPersona}")
-    public StudentOutputFullDto addStudent(@RequestBody StudentInput studentDtoInput, @PathVariable String idPersona) throws UnprocessableEntityException {
+    public StudentOutputFullDto addStudent(@RequestBody StudentInputDto studentDtoInput, @PathVariable String idPersona) throws UnprocessableEntityException {
         try {
             return serviceStudentRepository.addStudent(studentDtoInput, idPersona);
         } catch (Exception e) {
@@ -40,8 +40,18 @@ public class ControllerStudent {
         serviceStudentRepository.deleteStudentById(id);}
 
     @PutMapping("/{id}")
-    public StudentOutputFullDto updateStudent(@RequestBody StudentInput studentDtoInput, @PathVariable String id){
+    public StudentOutputFullDto updateStudent(@RequestBody StudentInputDto studentDtoInput, @PathVariable String id){
         return serviceStudentRepository.modifyStudent(studentDtoInput, id);
+    }
+
+    @PutMapping("/addSubject/{id}")
+    public StudentOutputDto addSubjectToStudent(@PathVariable String id, @RequestParam String idSubject){
+        return serviceStudentRepository.addSubject(id, idSubject);
+    }
+
+    @PutMapping("/addSubjects/{id}")
+    public StudentOutputDto addSubjectToStudent(@RequestBody List<String> subjects, @PathVariable String id){
+        return serviceStudentRepository.addSubjects(subjects, id);
     }
 
 }

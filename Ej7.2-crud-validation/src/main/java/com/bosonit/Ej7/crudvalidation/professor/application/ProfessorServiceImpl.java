@@ -10,6 +10,8 @@ import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Outpu
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputSimpleDto;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.input.ProfessorInputDto;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.repository.ProfessorRepository;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentOutputSimpleDto;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentResponseDto;
 import com.bosonit.Ej7.crudvalidation.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,7 @@ public class ProfessorServiceImpl implements ProfessorService{
     ProfessorOutputResponseDto professorOutputResponseDto;
 
     @Autowired
-    private Validator validator;
+    private StudentResponseDto studentResponseDto;
 
     public ProfessorOutputFullDto addProfessor(ProfessorInputDto professorInputDto, String idPersona) throws EntityNotFoundException {
 
@@ -51,6 +53,7 @@ public class ProfessorServiceImpl implements ProfessorService{
         if( professor==null) {
             throw new EntityNotFoundException("El profesor no ha sido encontrado");
         }
+
         if(outputType.equals("full")) {
             return new ProfessorOutputFullDto(professor);
         } else if (outputType.equals("simple")) {
@@ -70,6 +73,11 @@ public class ProfessorServiceImpl implements ProfessorService{
         return professorOutputResponseDto.mappingProfessorToProfessorOutput(professorList);
     }
 
+    public List<StudentOutputSimpleDto> getAllStudentByIdProfessor(String idProfessor){
+        Professor professor = professorRepository.findProfessorById(idProfessor);
+        return studentResponseDto.mappingStudentToStudentDtoOutputSimple(professor.getStudents());
+    }
+
     public void deleteProfessorById(String idProfessor){
         Professor professor = professorRepository.findProfessorById(idProfessor);
         if(professor==null) {
@@ -80,11 +88,11 @@ public class ProfessorServiceImpl implements ProfessorService{
 
     public ProfessorOutputFullDto modifyProfessor(ProfessorInputDto professorInputDto, String idPersona){
         Person person = personRepository.findPersonaById(idPersona);
+
         if(person==null) {
             throw new EntityNotFoundException("La persona no se ha encontrado no ha sido encontrado");
         }
 
         return new ProfessorOutputFullDto(professorRepository.save(new Professor(professorInputDto, person)));
-
     }
 }

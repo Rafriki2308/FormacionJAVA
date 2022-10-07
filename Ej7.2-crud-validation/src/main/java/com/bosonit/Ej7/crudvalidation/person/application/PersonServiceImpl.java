@@ -86,14 +86,26 @@ public class PersonServiceImpl implements PersonService{
 
     }
     public void deletePersonById(String id){
-        if(personRepository.findPersonaById(id)==null) {
+        Person person = personRepository.findPersonaById(id);
+        if(person==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
+        if(person.getStudent()!=null || person.getProfessor()!=null) {
+            throw new EntityNotFoundException("Esta Persona tiene un rol asignado");
+        }
+
         personRepository.delete(personRepository.findPersonaById(id));
     }
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput){
-        return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, String idPerson){
 
+        if(personRepository.findPersonaById(idPerson)==null) {
+            throw new EntityNotFoundException("El usuario no ha sido encontrado");
+        }
+
+        if(validator.checkPersonDtoImput(personDtoInput)){
+            return new PersonOutputDto(personRepository.save(new Person(personDtoInput,idPerson)));
+        }
+        throw new UnprocessableEntityException("Datos no válidos");
     }
 }

@@ -19,5 +19,5 @@ public interface PersonService {
 
     public void deletePersonById(String id);
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput);
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, String idPerson);
 }

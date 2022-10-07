@@ -15,4 +15,6 @@ public class ProfessorInputDto implements Serializable{
         private String comments;
 
         private String branch;
+
+        private String idStudent;
 }

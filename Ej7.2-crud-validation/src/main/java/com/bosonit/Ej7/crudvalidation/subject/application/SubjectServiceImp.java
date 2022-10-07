@@ -50,8 +50,13 @@ public class SubjectServiceImp implements SubjectService{
         subjectRepository.delete(subject);
     }
 
-    public SubjectOutputDto modifySubject(SubjectInputDto subjectInputDto){
+    public SubjectOutputDto modifySubject(SubjectInputDto subjectInputDto, String idSubject){
 
-        return new SubjectOutputDto(subjectRepository.save(new Subject(subjectInputDto)));
+
+        if(subjectRepository.findSubjectById(idSubject)==null){
+            throw new EntityNotFoundException("La asignatura a modificar no existe");
+        }
+        Subject subjectModified = new Subject(subjectInputDto, idSubject);
+        return new SubjectOutputDto(subjectRepository.save(subjectModified));
     }
 }

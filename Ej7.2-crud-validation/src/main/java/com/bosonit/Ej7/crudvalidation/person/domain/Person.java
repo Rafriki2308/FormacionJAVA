@@ -82,5 +82,21 @@ public class Person implements Serializable{
             setTermination_date(persona.getTermination_date());
         }
 
+    public Person(PersonInputDto persona, String idPersona) {
+
+        setId(idPersona);
+        setUser(persona.getUser());
+        setPassword(persona.getPassword());
+        setName(persona.getName());
+        setSurname(persona.getSurname());
+        setCompany_email(persona.getCompany_email());
+        setPersonal_email(persona.getPersonal_email());
+        setCity(persona.getCity());
+        setActive(persona.getActive());
+        setCreated_date(persona.getCreated_date());
+        setImagen_url(persona.getImagen_url());
+        setTermination_date(persona.getTermination_date());
+    }
+
 
 }

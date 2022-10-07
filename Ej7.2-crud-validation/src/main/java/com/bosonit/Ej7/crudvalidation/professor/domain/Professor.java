@@ -2,12 +2,15 @@ package com.bosonit.Ej7.crudvalidation.professor.domain;
 
 import com.bosonit.Ej7.crudvalidation.person.domain.Person;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.input.ProfessorInputDto;
+import com.bosonit.Ej7.crudvalidation.student.domain.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,14 +35,18 @@ public class Professor {
 
     @Column(name="rama")
     private String branch;
-    /*
-    @OneToMany
-    List<Student> students;*/
+
+    @OneToMany(mappedBy = "professor")
+    List<Student> students = new ArrayList<>();
 
     public Professor(ProfessorInputDto professorInputDto, Person person){
         setPerson(person);
         setComments(professorInputDto.getComments());
         setBranch(professorInputDto.getBranch());
+    }
+
+    public void addOneStudent(Student student){
+        students.add(student);
     }
 
 }

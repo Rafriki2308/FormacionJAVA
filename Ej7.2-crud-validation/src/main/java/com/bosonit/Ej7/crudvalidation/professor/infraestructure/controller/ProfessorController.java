@@ -5,6 +5,7 @@ import com.bosonit.Ej7.crudvalidation.professor.application.ProfessorServiceImpl
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputDto;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.input.ProfessorInputDto;
+import com.bosonit.Ej7.crudvalidation.student.infraestructure.controller.output.StudentOutputSimpleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,10 @@ public class ProfessorController {
 
     @GetMapping("/profesores")
     public List<ProfessorOutputFullDto> getAllProfessors(){return professorService.getAllProfessors();}
+
+    @GetMapping("/allStudents/{idProfessor}")
+    public List<StudentOutputSimpleDto> getAllStudetsByIdProfessor(@PathVariable String idProfessor){
+        return professorService.getAllStudentByIdProfessor(idProfessor);}
 
     @DeleteMapping("/{id_profesor}")
     public void deleteProfessortById(@PathVariable String id_profesor){

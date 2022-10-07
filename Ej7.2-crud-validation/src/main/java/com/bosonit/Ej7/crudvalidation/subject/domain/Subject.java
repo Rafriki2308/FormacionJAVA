@@ -1,12 +1,15 @@
 package com.bosonit.Ej7.crudvalidation.model;
 
+import com.bosonit.Ej7.crudvalidation.student.domain.Student;
 import com.bosonit.Ej7.crudvalidation.subject.infraestructure.controller.Input.SubjectInputDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,11 +28,10 @@ public class Subject {
 
    /* @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profesor")
-    Professor professor;
+    Professor professor;*/
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_estudiante")
-    Student student;*/
+    @ManyToMany(mappedBy = "subjects")
+    List<Student> students =new ArrayList<>();
 
     @Column(name = "asignatura")
     private String nameSubject;
@@ -49,5 +51,18 @@ public class Subject {
         setComment(subjectInputDto.getComment());
         setInitialDate(subjectInputDto.getInitialDate());
         setFinishDate(subjectInputDto.getFinishDate());
+    }
+
+    public Subject(SubjectInputDto subjectInputDto, String subjectId){
+        setId(subjectId);
+        setNameSubject(subjectInputDto.getNameSubject());
+        setComment(subjectInputDto.getComment());
+        setInitialDate(subjectInputDto.getInitialDate());
+        setFinishDate(subjectInputDto.getFinishDate());
+    }
+
+    public List<Student> addStudentToStudentsList(Student student){
+        students.add(student);
+        return students;
     }
 }
