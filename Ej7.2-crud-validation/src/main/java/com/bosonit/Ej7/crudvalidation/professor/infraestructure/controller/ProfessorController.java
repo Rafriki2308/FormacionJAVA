@@ -28,9 +28,9 @@ public class ProfessorController {
     }
 
     @GetMapping("/{id_professor}")
-    public ProfessorOutputDto getProfessorById(@PathVariable String id_professor, @RequestParam String outputType){
+    public ProfessorOutputDto getProfessorById(@PathVariable String id_professor){
 
-        return professorService.getProfessorById(id_professor, outputType);
+        return professorService.getProfessorById(id_professor);
     }
 
     @GetMapping("/profesores")

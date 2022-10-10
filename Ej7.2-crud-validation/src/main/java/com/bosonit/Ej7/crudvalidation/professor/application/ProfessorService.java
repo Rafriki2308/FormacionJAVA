@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProfessorService {
     public Object addProfessor(ProfessorInputDto professorInputDto, String idPersona) throws EntityNotFoundException;
 
-    public Object getProfessorById(String id, String outputType) throws EntityNotFoundException;
+    public Object getProfessorById(String id) throws EntityNotFoundException;
 
     public List<ProfessorOutputFullDto> getAllProfessors()throws EntityNotFoundException;
 

@@ -2,12 +2,16 @@ package com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output;
 
 import com.bosonit.Ej7.crudvalidation.person.domain.Person;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PersonOutputDto extends PersonOutputFatherDto {
 
     private String id;

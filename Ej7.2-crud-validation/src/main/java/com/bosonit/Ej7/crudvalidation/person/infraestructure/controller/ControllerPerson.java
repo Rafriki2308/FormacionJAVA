@@ -5,6 +5,9 @@ import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output.P
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
 import com.bosonit.Ej7.crudvalidation.person.application.PersonServiceImpl;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output.PersonOutputFatherDto;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputDto;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputSimpleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +43,9 @@ public class ControllerPerson {
 
     @GetMapping("/all")
     public List<PersonOutputFatherDto> getAllPeople(@RequestParam String outputType){return servicePersonRepository.getAllPeople(outputType);}
+
+    @GetMapping("/professor/{id}")
+    public ProfessorOutputFullDto getProffesorById(@PathVariable String id){return servicePersonRepository.getProffesorUsingFeign(id);}
 
     @DeleteMapping("/{id}")
     public void deletePersonById(@PathVariable String id){

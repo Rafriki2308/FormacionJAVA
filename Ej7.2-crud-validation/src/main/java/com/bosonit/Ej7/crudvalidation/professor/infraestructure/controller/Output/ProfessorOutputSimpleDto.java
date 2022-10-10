@@ -1,11 +1,14 @@
 package com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output;
 
-import com.bosonit.Ej7.crudvalidation.person.domain.Person;
 import com.bosonit.Ej7.crudvalidation.professor.domain.Professor;
 import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.input.ProfessorInputDto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProfessorOutputSimpleDto extends ProfessorOutputDto {
     private String id;
 

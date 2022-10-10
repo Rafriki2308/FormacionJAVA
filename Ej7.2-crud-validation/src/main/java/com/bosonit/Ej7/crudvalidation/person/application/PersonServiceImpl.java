@@ -2,11 +2,17 @@ package com.bosonit.Ej7.crudvalidation.person.application;
 
 import com.bosonit.Ej7.crudvalidation.exceptions.EntityNotFoundException;
 import com.bosonit.Ej7.crudvalidation.exceptions.UnprocessableEntityException;
+import com.bosonit.Ej7.crudvalidation.feignClients.ProfessorFeignClient;
 import com.bosonit.Ej7.crudvalidation.person.domain.Person;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.controller.output.*;
 import com.bosonit.Ej7.crudvalidation.person.infraestructure.repository.PersonRepository;
+import com.bosonit.Ej7.crudvalidation.professor.domain.Professor;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputDto;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
+import com.bosonit.Ej7.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputSimpleDto;
 import com.bosonit.Ej7.crudvalidation.validator.Validator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PersonServiceImpl implements PersonService{
 
     @Autowired
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
-    private PersonResponseDto personDtoResponse;
+    private final PersonResponseDto personDtoResponse;
 
     @Autowired
-    private Validator validator;
+    private final Validator validator;
+
+    @Autowired
+    private final ProfessorFeignClient professorFeignClient;
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
         if(validator.checkPersonDtoImput(personDtoInput)){
@@ -84,6 +94,10 @@ public class PersonServiceImpl implements PersonService{
         }
         throw new EntityNotFoundException("La opción de información no es correcta");
 
+    }
+
+    public ProfessorOutputFullDto getProffesorUsingFeign(String idProfessor){
+        return professorFeignClient.getProfessor(idProfessor);
     }
     public void deletePersonById(String id){
         Person person = personRepository.findPersonaById(id);

@@ -48,19 +48,12 @@ public class ProfessorServiceImpl implements ProfessorService{
 
     }
 
-    public ProfessorOutputDto getProfessorById(String id, String outputType) throws EntityNotFoundException {
+    public ProfessorOutputDto getProfessorById(String id) throws EntityNotFoundException {
          Professor professor = professorRepository.findProfessorById(id);
         if( professor==null) {
             throw new EntityNotFoundException("El profesor no ha sido encontrado");
         }
-
-        if(outputType.equals("full")) {
-            return new ProfessorOutputFullDto(professor);
-        } else if (outputType.equals("simple")) {
-            return new ProfessorOutputSimpleDto(professor);
-
-        }
-        throw new EntityNotFoundException("La opcion de informacion no es correcta");
+            return new ProfessorOutputFullDto((professor));
     }
 
     public List<ProfessorOutputFullDto> getAllProfessors()throws EntityNotFoundException{
