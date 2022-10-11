@@ -10,11 +10,11 @@ public interface PersonService {
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws Exception;
 
-    public PersonOutputDto getPersonById(String id) throws EntityNotFoundException;
+    public PersonOutputDto getPersonById(Integer id) throws EntityNotFoundException;
 
     public List<PersonOutputDto> getAllPeople();
 
-    public void deletePersonById(String id);
+    public void deletePersonById(Integer id);
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, String idPerson);
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, Integer idPerson);
 }

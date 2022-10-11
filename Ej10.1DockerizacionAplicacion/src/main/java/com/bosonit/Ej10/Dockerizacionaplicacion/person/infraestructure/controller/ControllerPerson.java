@@ -29,19 +29,19 @@ public class ControllerPerson {
     @GetMapping("/{id}")
     public PersonOutputDto getPersonById(@PathVariable String id){
 
-            return servicePersonRepository.getPersonById(id);
+            return servicePersonRepository.getPersonById(Integer.parseInt(id));
         }
 
     @GetMapping("/all")
-    public List<PersonOutputDto> getAllPeople(@RequestParam String outputType){return servicePersonRepository.getAllPeople();}
+    public List<PersonOutputDto> getAllPeople(){return servicePersonRepository.getAllPeople();}
 
     @DeleteMapping("/{id}")
     public void deletePersonById(@PathVariable String id){
-        servicePersonRepository.deletePersonById(id);}
+        servicePersonRepository.deletePersonById(Integer.parseInt(id));}
 
     @PutMapping("/{id}")
     public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput, @PathVariable String id){
-        return servicePersonRepository.modifyPerson(personDtoInput, id);
+        return servicePersonRepository.modifyPerson(personDtoInput, Integer.parseInt(id));
     }
 
 }

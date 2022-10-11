@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class PersonServiceImpl implements PersonService{
         throw new UnprocessableEntityException("Datos no válidos");
     }
 
-    public PersonOutputDto getPersonById(String id) throws EntityNotFoundException {
+    public PersonOutputDto getPersonById(Integer id) throws EntityNotFoundException {
         Person person = personRepository.findPersonaById(id);
         if(person==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
@@ -63,7 +64,7 @@ public class PersonServiceImpl implements PersonService{
         return personResponseDto.mappingPersonToPersonDtoOutput(listPeople);
     }
 
-    public void deletePersonById(String id){
+    public void deletePersonById(Integer id){
         Person person = personRepository.findPersonaById(id);
         if(person==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
@@ -71,7 +72,7 @@ public class PersonServiceImpl implements PersonService{
         personRepository.delete(personRepository.findPersonaById(id));
     }
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, String idPerson){
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, Integer idPerson){
 
         if(personRepository.findPersonaById(idPerson)==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");

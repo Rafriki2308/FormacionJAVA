@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonOutputDto {
 
-    private String id;
+    private Integer id;
 
     private String user;
 

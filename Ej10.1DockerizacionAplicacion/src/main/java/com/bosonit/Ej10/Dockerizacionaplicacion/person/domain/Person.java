@@ -18,9 +18,9 @@ import java.util.Date;
 public class Person implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_persona")
-    private String id;
+    private Integer id;
 
     @Column (name= "usuario")
     private String user;
@@ -71,7 +71,7 @@ public class Person implements Serializable{
             setTermination_date(persona.getTermination_date());
         }
 
-    public Person(PersonInputDto persona, String idPersona) {
+    public Person(PersonInputDto persona, Integer idPersona) {
 
         setId(idPersona);
         setUser(persona.getUser());

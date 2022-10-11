@@ -6,9 +6,10 @@ import com.bosonit.Ej10.Dockerizacionaplicacion.person.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Objects;
 
-public interface PersonRepository extends JpaRepository<Person, String> {
-    Person findPersonaById(String id);
+public interface PersonRepository extends JpaRepository<Person, Objects> {
+    Person findPersonaById(Integer id);
 
     List<Person> findByUser(String name);
 
