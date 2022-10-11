@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bosonit</groupId>
-	<artifactId>Ej10.1-Dockerizacion-aplicacion</artifactId>
+	<artifactId>dockerizacion-aplicacion</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Ej10.1-Dockerizacion-aplicacion</name>
+	<name>dockerizacion-application</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -75,7 +75,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.bosonit.prueba.Prueba</mainClass>
+							<mainClass>com.bosonit.Ej10.Dockerizacionaplicacion.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
