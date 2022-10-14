@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "3cc8eb6e-ca32-44dc-b3d4-442a38c54772",
+		"name": "ServiceLocatorFactoryBean",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
