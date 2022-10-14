@@ -12,8 +12,8 @@ public class VehicleConfig {
 
     @Bean
     public FactoryBean<?> factoryBean(){
-        final ServiceLocatorFactoryBean bean = new ServiceLocatorFactoryBean();
-        bean.setServiceLocatorInterface(ServiceRegistry.class);
-        return bean;
+        final ServiceLocatorFactoryBean factory = new ServiceLocatorFactoryBean();
+        factory.setServiceLocatorInterface(ServiceRegistry.class);
+        return factory;
     }
 }
