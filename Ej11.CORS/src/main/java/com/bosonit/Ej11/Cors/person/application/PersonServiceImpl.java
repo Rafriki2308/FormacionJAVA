@@ -31,11 +31,10 @@ public class PersonServiceImpl implements PersonService{
 
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
-        /*if(validator.checkPersonDtoImput(personDtoInput)){
+        if(validator.checkPersonDtoImput(personDtoInput)){
              return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
         }
-        throw new UnprocessableEntityException("Datos no válidos");*/
-        return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
+        throw new UnprocessableEntityException("Datos no válidos");
     }
 
     public PersonOutputDto getPersonById(Integer id) throws EntityNotFoundException {
