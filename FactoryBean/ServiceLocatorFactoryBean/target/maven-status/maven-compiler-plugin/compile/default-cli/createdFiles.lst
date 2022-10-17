@@ -1,0 +1,10 @@
+com\bosonit\ServiceLocatorFactoryBean\model\Vehicle.class
+com\bosonit\ServiceLocatorFactoryBean\ServiceLocatorFactoryBeanApplication.class
+com\bosonit\ServiceLocatorFactoryBean\service\LorrieService.class
+BusService.class
+com\bosonit\ServiceLocatorFactoryBean\service\CarService.class
+com\bosonit\ServiceLocatorFactoryBean\registry\ServiceRegistry.class
+com\bosonit\ServiceLocatorFactoryBean\config\VehicleConfig.class
+com\bosonit\ServiceLocatorFactoryBean\controller\VehicleController.class
+com\bosonit\ServiceLocatorFactoryBean\service\BikeService.class
+com\bosonit\ServiceLocatorFactoryBean\registry\AdapterService.class

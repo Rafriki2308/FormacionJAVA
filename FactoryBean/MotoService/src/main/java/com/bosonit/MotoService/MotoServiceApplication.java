@@ -1,13 +1,13 @@
-package com.bosonit.ServiceLocatorFactoryBean;
+package com.bosonit.MotoService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ServiceLocatorFactoryBeanApplication {
+public class MotoServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServiceLocatorFactoryBeanApplication.class, args);
+		SpringApplication.run(MotoServiceApplication.class, args);
 	}
 
 }

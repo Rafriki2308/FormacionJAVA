@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  app:
+    image:  spring-application
+    container_name: app_container
+    command: sleep infinity
+
+    networks:
+      - mynetwork
+      - postgres
+
+networks:
+  postgres:
+    external:
+      name:  postgres_test
