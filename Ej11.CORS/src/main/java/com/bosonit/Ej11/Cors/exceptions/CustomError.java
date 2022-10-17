@@ -1,4 +1,4 @@
-package com.bosonit.Ej10.Dockerizacionaplicacion.exceptions;
+package com.bosonit.Ej11.Cors.exceptions;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
