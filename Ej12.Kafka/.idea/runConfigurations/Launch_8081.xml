@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Launch 8081" type="Application" factoryName="Application">
+    <envs>
+      <env name="server.port" value="8081" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.bosonit.Ej12.Kafka.Application" />
+    <module name="Ej12.Kafka" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
