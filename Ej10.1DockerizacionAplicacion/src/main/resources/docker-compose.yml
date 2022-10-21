@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  postgres:
+    container_name: postgres2
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=contrasena
+      - POSTGRES_DB=test
+    networks:
+      - "mynetwork"
+
+  backend:
+    image: spring-application
+    container_name: persona
+    build:
+      context: .
+      dockerfile: Dokerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres2:5432/postgres
+      - spring.datasource.password=contrasena
+    networks:
+      - "mynetwork"
+
+networks:
+  mynetwork:
+
+
