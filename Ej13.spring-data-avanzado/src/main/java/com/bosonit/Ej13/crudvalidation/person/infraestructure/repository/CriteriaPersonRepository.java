@@ -33,11 +33,18 @@ public class CriteriaPersonRepository {
         setRoot(cq.from(Person.class));
     }
 
-    public List<Person> getGreaterPeopleByUser(String user) {
-
+    public List<Person> getGreaterPeopleByUser(String user, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.greaterThanOrEqualTo(root.get("user"), user));
+
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
@@ -96,5 +103,13 @@ public class CriteriaPersonRepository {
         cq.select(root).where(cb.lessThanOrEqualTo(root.get("created_date"), dateCreated));
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
+    }
+
+    public void orderByUser(){
+        cq.orderBy(cb.asc(root.get("user")));
+    }
+
+    public void orderByName(){
+        cq.orderBy(cb.asc(root.get("name")));
     }
 }
