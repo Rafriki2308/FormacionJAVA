@@ -1,13 +1,10 @@
 package com.bosonit.Ej13.crudvalidation.person.infraestructure.repository;
 
 import com.bosonit.Ej13.crudvalidation.person.domain.Person;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output.PersonOutputFatherDto;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,7 +18,7 @@ import java.util.List;
 @Data
 public class CriteriaPersonRepository {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     private CriteriaBuilder cb;
 
