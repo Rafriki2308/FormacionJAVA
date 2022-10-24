@@ -51,8 +51,9 @@ public class ControllerPerson {
     }
 
     @GetMapping("/greaterThan/user")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanUser(@RequestParam String user) {
-        return servicePersonRepository.getGreaterPeopleByUser(user);
+    public List<PersonOutputFatherDto> getPeopleGreaterThanUser(@RequestParam String user,
+                                                                @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getGreaterPeopleByUser(user, order);
     }
 
     @GetMapping("/lessThan/user")

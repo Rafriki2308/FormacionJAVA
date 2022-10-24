@@ -97,9 +97,9 @@ public class PersonServiceImpl implements PersonService {
 
     }
 
-    public List<PersonOutputFatherDto> getGreaterPeopleByUser(String user) {
+    public List<PersonOutputFatherDto> getGreaterPeopleByUser(String user, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByUser(user);
+        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByUser(user, order);
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
