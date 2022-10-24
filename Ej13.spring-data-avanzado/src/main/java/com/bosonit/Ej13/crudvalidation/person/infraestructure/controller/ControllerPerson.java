@@ -45,6 +45,11 @@ public class ControllerPerson {
     @GetMapping("/professor/{id}")
     public ProfessorOutputFullDto getProffesorById(@PathVariable String id){return servicePersonRepository.getProffesorUsingFeign(id);}
 
+    @GetMapping("/greaterThan")
+    public List<PersonOutputFatherDto> getPeopleGreaterThanUser(@RequestParam String user){
+        return servicePersonRepository.getGreaterPeopleByUser(user);
+    }
+
     @DeleteMapping("/{id}")
     public void deletePersonById(@PathVariable String id){
         servicePersonRepository.deletePersonById(id);}

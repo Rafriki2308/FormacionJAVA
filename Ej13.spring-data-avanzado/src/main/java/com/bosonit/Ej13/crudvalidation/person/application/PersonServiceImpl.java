@@ -12,8 +12,11 @@ import com.bosonit.Ej13.crudvalidation.exceptions.UnprocessableEntityException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,9 @@ public class PersonServiceImpl implements PersonService{
 
     @Autowired
     private final ProfessorFeignClient professorFeignClient;
+
+    @Autowired
+    private final EntityManager entityManager;
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
         if(validator.checkPersonDtoImput(personDtoInput)){
@@ -90,6 +96,24 @@ public class PersonServiceImpl implements PersonService{
             return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
         }
         throw new EntityNotFoundException("La opción de información no es correcta");
+
+    }
+
+    public List <PersonOutputFatherDto> getGreaterPeopleByUser(String user){
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Person> cq = cb.createQuery(Person.class);
+        Root<Person> root = cq.from(Person.class);
+
+        cq.select(root).where(cb.greaterThan(root.get("user"), user));
+
+        TypedQuery<Person> q = entityManager.createQuery(cq);
+        List<Person> listPeople = q.getResultList();
+
+        if(listPeople==null) {
+            throw new EntityNotFoundException("El usuario no ha sido encontrado");
+        }
+        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
 
     }
 
