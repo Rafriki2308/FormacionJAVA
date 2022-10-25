@@ -108,9 +108,9 @@ public class PersonServiceImpl implements PersonService {
 
     }
 
-    public List<PersonOutputFatherDto> getLessPeopleByUser(String user) {
+    public List<PersonOutputFatherDto> getLessPeopleByUser(String user, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByUser(user);
+        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByUser(user, order);
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
@@ -119,19 +119,9 @@ public class PersonServiceImpl implements PersonService {
 
     }
 
-    public List<PersonOutputFatherDto> getGreaterPeopleByName(String name) {
+    public List<PersonOutputFatherDto> getGreaterPeopleByName(String name, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByName(name);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleByName(String name) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByName(name);
+        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByName(name, order);
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
@@ -139,19 +129,10 @@ public class PersonServiceImpl implements PersonService {
         return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
     }
 
-    public List<PersonOutputFatherDto> getGreaterPeopleBySurname(String surname) {
+    public List<PersonOutputFatherDto> getLessPeopleByName(String name, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleBySurname(surname);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleBySurname(String surname) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleBySurname(surname);
+        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByName(name, order
+        );
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
@@ -159,9 +140,9 @@ public class PersonServiceImpl implements PersonService {
         return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
     }
 
-    public List<PersonOutputFatherDto> getGreaterPeopleByDateCreate(Date dateCreated) {
+    public List<PersonOutputFatherDto> getGreaterPeopleBySurname(String surname, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByDateCreation(dateCreated);
+        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleBySurname(surname, order);
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
@@ -169,9 +150,29 @@ public class PersonServiceImpl implements PersonService {
         return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
     }
 
-    public List<PersonOutputFatherDto> getLessPeopleByDateCreate(Date dateCreated) {
+    public List<PersonOutputFatherDto> getLessPeopleBySurname(String surname, String order) {
 
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByDateCreation(dateCreated);
+        List<Person> listPeople = criteriaPersonRepository.getLessPeopleBySurname(surname, order);
+
+        if (listPeople == null) {
+            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
+        }
+        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
+    }
+
+    public List<PersonOutputFatherDto> getGreaterPeopleByDateCreate(Date dateCreated, String order) {
+
+        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByDateCreation(dateCreated, order);
+
+        if (listPeople == null) {
+            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
+        }
+        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
+    }
+
+    public List<PersonOutputFatherDto> getLessPeopleByDateCreate(Date dateCreated, String order) {
+
+        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByDateCreation(dateCreated, order);
 
         if (listPeople == null) {
             throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");

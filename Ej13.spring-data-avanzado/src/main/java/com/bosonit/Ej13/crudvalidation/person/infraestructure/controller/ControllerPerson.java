@@ -57,38 +57,45 @@ public class ControllerPerson {
     }
 
     @GetMapping("/lessThan/user")
-    public List<PersonOutputFatherDto> getPeopleLessThanUser(@RequestParam String user) {
-        return servicePersonRepository.getLessPeopleByUser(user);
+    public List<PersonOutputFatherDto> getPeopleLessThanUser(@RequestParam String user,
+                                                             @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getLessPeopleByUser(user, order);
     }
 
     @GetMapping("/greaterThan/name")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanName(@RequestParam String name) {
-        return servicePersonRepository.getGreaterPeopleByName(name);
+    public List<PersonOutputFatherDto> getPeopleGreaterThanName(@RequestParam String name,
+                                                                @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getGreaterPeopleByName(name, order);
     }
 
     @GetMapping("/lessThan/name")
-    public List<PersonOutputFatherDto> getPeopleLessThanName(@RequestParam String name) {
-        return servicePersonRepository.getLessPeopleByName(name);
+    public List<PersonOutputFatherDto> getPeopleLessThanName(@RequestParam String name,
+                                                             @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getLessPeopleByName(name, order);
     }
 
     @GetMapping("/greaterThan/surname")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanSurname(@RequestParam String surname) {
-        return servicePersonRepository.getGreaterPeopleBySurname(surname);
+    public List<PersonOutputFatherDto> getPeopleGreaterThanSurname(@RequestParam String surname,
+                                                                   @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getGreaterPeopleBySurname(surname, order);
     }
 
     @GetMapping("/lessThan/surname")
-    public List<PersonOutputFatherDto> getPeopleLessThanSurname(@RequestParam String surname) {
-        return servicePersonRepository.getLessPeopleBySurname(surname);
+    public List<PersonOutputFatherDto> getPeopleLessThanSurname(@RequestParam String surname,
+                                                                @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getLessPeopleBySurname(surname, order);
     }
 
     @GetMapping("/greaterThan/dateCreated")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanDateCreated(@RequestParam Date dateCreate) {
-        return servicePersonRepository.getGreaterPeopleByDateCreate(dateCreate);
+    public List<PersonOutputFatherDto> getPeopleGreaterThanDateCreated(@RequestParam Date dateCreate,
+                                                                       @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getGreaterPeopleByDateCreate(dateCreate, order);
     }
 
     @GetMapping("/lessThan/dateCreated")
-    public List<PersonOutputFatherDto> getPeopleLessThandateCreated(@RequestParam Date dateCreated) {
-        return servicePersonRepository.getLessPeopleByDateCreate(dateCreated);
+    public List<PersonOutputFatherDto> getPeopleLessThandateCreated(@RequestParam Date dateCreated,
+                                                                    @RequestParam(defaultValue = "none") String order) {
+        return servicePersonRepository.getLessPeopleByDateCreate(dateCreated, order);
     }
 
     @DeleteMapping("/{id}")
