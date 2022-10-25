@@ -7,7 +7,10 @@ import com.bosonit.Ej13.crudvalidation.person.application.PersonServiceImpl;
 import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output.PersonOutputFatherDto;
 import com.bosonit.Ej13.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.Date;
 import java.util.List;
@@ -96,6 +99,12 @@ public class ControllerPerson {
     public List<PersonOutputFatherDto> getPeopleLessThandateCreated(@RequestParam Date dateCreated,
                                                                     @RequestParam(defaultValue = "none") String order) {
         return servicePersonRepository.getLessPeopleByDateCreate(dateCreated, order);
+    }
+
+    @GetMapping(path = "/paginacion")
+    public Page loadPeoplePage(@RequestParam Integer nPage,
+                                                      @RequestParam (defaultValue = "10") Integer size) {
+        return servicePersonRepository.getPeoplePage(nPage, size);
     }
 
     @DeleteMapping("/{id}")
