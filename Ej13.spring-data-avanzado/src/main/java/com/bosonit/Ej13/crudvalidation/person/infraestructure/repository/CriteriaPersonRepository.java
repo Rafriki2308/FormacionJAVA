@@ -49,58 +49,107 @@ public class CriteriaPersonRepository {
         return q.getResultList();
     }
 
-    public List<Person> getLessPeopleByUser(String user) {
+    public List<Person> getLessPeopleByUser(String user, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.lessThanOrEqualTo(root.get("user"), user));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getGreaterPeopleByName(String name) {
+    public List<Person> getGreaterPeopleByName(String name, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.greaterThanOrEqualTo(root.get("name"), name));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getLessPeopleByName(String name) {
+    public List<Person> getLessPeopleByName(String name, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.lessThanOrEqualTo(root.get("name"), name));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getGreaterPeopleBySurname(String surname) {
+    public List<Person> getGreaterPeopleBySurname(String surname, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.greaterThanOrEqualTo(root.get("surname"), surname));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getLessPeopleBySurname(String surname) {
+    public List<Person> getLessPeopleBySurname(String surname, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.lessThanOrEqualTo(root.get("surname"), surname));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getGreaterPeopleByDateCreation(Date dateCreated) {
+    public List<Person> getGreaterPeopleByDateCreation(Date dateCreated, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.greaterThanOrEqualTo(root.get("created_date"), dateCreated));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<Person> getLessPeopleByDateCreation(Date dateCreated) {
+    public List<Person> getLessPeopleByDateCreation(Date dateCreated, String order) {
 
         configCriteriaPersonRepository();
         cq.select(root).where(cb.lessThanOrEqualTo(root.get("created_date"), dateCreated));
+        if(order.equals("user")){
+            orderByUser();
+        }
+
+        if(order.equals("name")){
+            orderByName();
+        }
         TypedQuery<Person> q = entityManager.createQuery(cq);
         return q.getResultList();
     }
