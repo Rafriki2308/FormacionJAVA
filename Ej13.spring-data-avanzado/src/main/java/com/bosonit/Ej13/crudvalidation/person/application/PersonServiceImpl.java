@@ -12,7 +12,10 @@ import com.bosonit.Ej13.crudvalidation.validator.Validator;
 import com.bosonit.Ej13.crudvalidation.exceptions.UnprocessableEntityException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -182,6 +185,11 @@ public class PersonServiceImpl implements PersonService {
 
     public ProfessorOutputFullDto getProffesorUsingFeign(String idProfessor) {
         return professorFeignClient.getProfessor(idProfessor);
+    }
+
+    public Page getPeoplePage(Integer nPage, Integer size) {
+        Pageable pageable = PageRequest.of(nPage, size);
+        return personRepository.findAll(pageable);
     }
 
     public void deletePersonById(String id) {
