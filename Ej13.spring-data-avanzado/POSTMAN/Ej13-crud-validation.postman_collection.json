@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d341aab8-4f50-4497-b0f9-2f05b511b196",
-		"name": "Ej7.2-crud-validation",
+		"_postman_id": "b610bef3-332e-4550-b6de-913fec7653ce",
+		"name": "Ej13-crud-validation Spring-Data Advanced",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -116,6 +116,243 @@
 					"response": []
 				},
 				{
+					"name": "GetPersonByProfessorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/professor/professor-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"professor",
+								"professor-1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGreaterPeopleThanUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/greaterThan/user?user=lorena",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"greaterThan",
+								"user"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "lorena"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLessPeopleThanUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/lessThan/user?user=Lorena",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"lessThan",
+								"user"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "Lorena"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGreaterPeopleThanName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/greaterThan/surname?surname=lorena",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"greaterThan",
+								"surname"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "lorena"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLessPeopleThanName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/lessThan/name?name=Lorena",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"lessThan",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Lorena"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGreaterPeopleThanSurname",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/greaterThan/surname?surname=fernandez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"greaterThan",
+								"surname"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "fernandez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLessPeopleThanSurname",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/lessThan/surname?surname=Martinez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"lessThan",
+								"surname"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "Martinez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGreaterPeopleThanDateCreated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/greaterThan/surname?surname=fernandez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"greaterThan",
+								"surname"
+							],
+							"query": [
+								{
+									"key": "surname",
+									"value": "fernandez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLessPeopleThanDateCreated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/persona/lessThan/dateCreated?dateCreated=Martinez",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"persona",
+								"lessThan",
+								"dateCreated"
+							],
+							"query": [
+								{
+									"key": "dateCreated",
+									"value": "Martinez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeletePerson",
 					"request": {
 						"method": "DELETE",
@@ -163,27 +400,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "GetPersonByProfessorId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/persona/professor/professor-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"persona",
-								"professor",
-								"professor-1"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -205,7 +421,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estudiante/person-1",
+							"raw": "http://localhost:8080/estudiante/person-2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -213,7 +429,7 @@
 							"port": "8080",
 							"path": [
 								"estudiante",
-								"person-1"
+								"person-2"
 							]
 						}
 					},
@@ -369,7 +585,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/profesor/person-2",
+							"raw": "http://localhost:8080/profesor/person-1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -377,7 +593,7 @@
 							"port": "8080",
 							"path": [
 								"profesor",
-								"person-2"
+								"person-1"
 							]
 						}
 					},
