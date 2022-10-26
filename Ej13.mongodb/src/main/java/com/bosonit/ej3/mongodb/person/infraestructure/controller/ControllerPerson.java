@@ -1,9 +1,10 @@
 package com.bosonit.ej3.mongodb.person.infraestructure.controller;
 
-import com.bosonit.Ej10.Dockerizacionaplicacion.exceptions.UnprocessableEntityException;
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.application.PersonServiceImpl;
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.output.PersonOutputDto;
+
+import com.bosonit.ej3.mongodb.exceptions.UnprocessableEntityException;
+import com.bosonit.ej3.mongodb.person.application.PersonServiceImpl;
+import com.bosonit.ej3.mongodb.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.ej3.mongodb.person.infraestructure.controller.output.PersonOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
