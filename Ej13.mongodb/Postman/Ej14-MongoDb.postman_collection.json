@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "3a730967-4da2-4b09-9362-aef4248636ba",
+		"name": "Ej14-MongoDb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddPerson",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"Rafael\",\r\n    \"password\": \"password\",\r\n    \"name\": \"Rafael\",\r\n    \"surname\": \"Rafael\",\r\n    \"company_email\": \"Rafael.martinez@bosonit.com\",\r\n    \"personal_email\": \"Rafael@gmail.com\",\r\n    \"city\": \"Polopos\",\r\n    \"active\":true,\r\n    \"created_date\": \"2022-06-14\",\r\n    \"imagen_url\": \"image.png\",\r\n    \"termination_date\": \"2050-06-14\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllPeople",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persona/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPersonById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persona/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePerson",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persona/635912617ab56c35105fc6f8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona",
+						"635912617ab56c35105fc6f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePerson",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"Lorena\",\r\n    \"password\": \"password\",\r\n    \"name\": \"Lorena\",\r\n    \"surname\": \"Lorena\",\r\n    \"company_email\": \"Rafael.martinez@bosonit.com\",\r\n    \"personal_email\": \"Lorenal@gmail.com\",\r\n    \"city\": \"Polopos\",\r\n    \"active\": true,\r\n    \"created_date\": \"2022-06-14\",\r\n    \"imagen_url\": \"image.png\",\r\n    \"termination_date\": \"2050-06-14\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persona/635912617ab56c35105fc6f8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persona",
+						"635912617ab56c35105fc6f8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
