@@ -18,7 +18,7 @@ import java.util.Date;
 public class Person{
 
     @Id
-    private Integer id;
+    private String id;
 
 
     private String user;
@@ -59,7 +59,7 @@ public class Person{
             setTermination_date(persona.getTermination_date());
         }
 
-    public Person(PersonInputDto persona, Integer idPersona) {
+    public Person(PersonInputDto persona, String idPersona) {
 
         setId(idPersona);
         setUser(persona.getUser());

@@ -30,7 +30,7 @@ public class ControllerPerson {
     @GetMapping("/{id}")
     public PersonOutputDto getPersonById(@PathVariable String id){
 
-            return servicePersonRepository.getPersonById(Integer.parseInt(id));
+            return servicePersonRepository.getPersonById(id);
         }
 
     @GetMapping("/all")
@@ -38,11 +38,11 @@ public class ControllerPerson {
 
     @DeleteMapping("/{id}")
     public void deletePersonById(@PathVariable String id){
-        servicePersonRepository.deletePersonById(Integer.parseInt(id));}
+        servicePersonRepository.deletePersonById(id);}
 
     @PutMapping("/{id}")
     public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput, @PathVariable String id){
-        return servicePersonRepository.modifyPerson(personDtoInput, Integer.parseInt(id));
+        return servicePersonRepository.modifyPerson(personDtoInput, id);
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonOutputDto {
 
-    private Integer id;
+    private String id;
 
     private String user;
 
