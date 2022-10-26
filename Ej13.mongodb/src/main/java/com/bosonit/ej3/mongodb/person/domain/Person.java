@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -35,19 +33,14 @@ public class Person{
 
     private String personal_email;
 
-    @Column
     private String city;
 
-    @Column
     private Boolean active;
 
-    @Column
     private Date created_date;
 
-    @Column
     private String imagen_url;
 
-    @Column
     private Date termination_date;
 
 
