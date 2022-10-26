@@ -1,8 +1,9 @@
 package com.bosonit.ej3.mongodb.person.application;
 
-import com.bosonit.Ej10.Dockerizacionaplicacion.exceptions.EntityNotFoundException;
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.output.PersonOutputDto;
+
+import com.bosonit.ej3.mongodb.exceptions.EntityNotFoundException;
+import com.bosonit.ej3.mongodb.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.ej3.mongodb.person.infraestructure.controller.output.PersonOutputDto;
 
 import java.util.List;
 
