@@ -1,6 +1,7 @@
 package com.bosonit.ej3.mongodb.person.infraestructure.controller.output;
 
-import com.bosonit.Ej10.Dockerizacionaplicacion.person.domain.Person;
+
+import com.bosonit.ej3.mongodb.person.domain.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
