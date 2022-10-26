@@ -1,217 +1,84 @@
-package com.bosonit.Ej13.crudvalidation.person.application;
+package com.bosonit.ej3.mongodb.person.application;
 
-import com.bosonit.Ej13.crudvalidation.exceptions.EntityNotFoundException;
-import com.bosonit.Ej13.crudvalidation.feignClients.ProfessorFeignClient;
-import com.bosonit.Ej13.crudvalidation.person.domain.Person;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output.*;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.repository.CriteriaPersonRepository;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.repository.PersonRepository;
-import com.bosonit.Ej13.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
-import com.bosonit.Ej13.crudvalidation.validator.Validator;
-import com.bosonit.Ej13.crudvalidation.exceptions.UnprocessableEntityException;
+import com.bosonit.Ej10.Dockerizacionaplicacion.exceptions.EntityNotFoundException;
+import com.bosonit.Ej10.Dockerizacionaplicacion.exceptions.UnprocessableEntityException;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.domain.Person;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.output.PersonOutputDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.output.PersonResponseDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.repository.PersonRepository;
+import com.bosonit.Ej10.Dockerizacionaplicacion.validator.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl implements PersonService{
 
     @Autowired
+
     private final PersonRepository personRepository;
-
-    @Autowired
-    private final PersonResponseDto personDtoResponse;
 
     @Autowired
     private final Validator validator;
 
     @Autowired
-    private final ProfessorFeignClient professorFeignClient;
+    private final PersonResponseDto personResponseDto;
 
-    @Autowired
-    private final CriteriaPersonRepository criteriaPersonRepository;
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
-        if (validator.checkPersonDtoImput(personDtoInput)) {
-            return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
+        if(validator.checkPersonDtoImput(personDtoInput)){
+             return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
         }
         throw new UnprocessableEntityException("Datos no válidos");
     }
 
-    public PersonOutputFatherDto getPersonById(String id, String outputType) throws EntityNotFoundException {
+    public PersonOutputDto getPersonById(Integer id) throws EntityNotFoundException {
         Person person = personRepository.findPersonaById(id);
-        if (person == null) {
+        if(person==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
-
-        if (outputType.equals("full")) {
-            if (person.getProfessor() == null && person.getStudent() == null) {
-                return new PersonOutputDto(person);
-            } else if (person.getStudent() == null) {
-                return new PersonOutputProfessorDto(person);
-            } else {
-                return new PersonOutputStudentDto(person);
-            }
-        } else if (outputType.equals("simple")) {
-            return new PersonOutputDto(personRepository.findPersonaById(id));
-        }
-        throw new EntityNotFoundException("La opcion de informacion no es correcta");
-
+        return new PersonOutputDto(person);
     }
 
-    public List<PersonOutputFatherDto> getPersonByUser(String name, String outputType) {
+    public List<PersonOutputDto> getPersonByUser(String name){
         List<Person> listPerson = new ArrayList<>(personRepository.findByUser(name));
 
-        if (listPerson == null) {
+        if(listPerson==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
-
-        if (outputType.equals("full")) {
-            return personDtoResponse.mappingPersonToPersonDtoOutputFull(listPerson);
-        } else if (outputType.equals("simple")) {
-            return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPerson);
-        }
-        throw new EntityNotFoundException("La opción de información no es correcta");
-
+        return personResponseDto.mappingPersonToPersonDtoOutput(listPerson);
     }
 
-    public List<PersonOutputFatherDto> getAllPeople(String outputType) {
-        List<Person> listPeople = personRepository.findAll();
+    public List<PersonOutputDto> getAllPeople(){
+         List<Person> listPeople = personRepository.findAll();
 
-        if (listPeople == null) {
+        if(listPeople==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
-
-        if (outputType.equals("full")) {
-            return personDtoResponse.mappingPersonToPersonDtoOutputFull(listPeople);
-        } else if (outputType.equals("simple")) {
-            return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-        }
-        throw new EntityNotFoundException("La opción de información no es correcta");
-
+        return personResponseDto.mappingPersonToPersonDtoOutput(listPeople);
     }
 
-    public List<PersonOutputFatherDto> getGreaterPeopleByUser(String user, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByUser(user, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleByUser(String user, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByUser(user, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-
-    }
-
-    public List<PersonOutputFatherDto> getGreaterPeopleByName(String name, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByName(name, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleByName(String name, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByName(name, order
-        );
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getGreaterPeopleBySurname(String surname, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleBySurname(surname, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleBySurname(String surname, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleBySurname(surname, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getGreaterPeopleByDateCreate(Date dateCreated, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getGreaterPeopleByDateCreation(dateCreated, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public List<PersonOutputFatherDto> getLessPeopleByDateCreate(Date dateCreated, String order) {
-
-        List<Person> listPeople = criteriaPersonRepository.getLessPeopleByDateCreation(dateCreated, order);
-
-        if (listPeople == null) {
-            throw new EntityNotFoundException("No se han encontrado personas que cumplan ese criterio");
-        }
-        return personDtoResponse.mappingPersonToPersonDtoOutputSimple(listPeople);
-    }
-
-    public ProfessorOutputFullDto getProffesorUsingFeign(String idProfessor) {
-        return professorFeignClient.getProfessor(idProfessor);
-    }
-
-    public Page getPeoplePage(Integer nPage, Integer size) {
-        Pageable pageable = PageRequest.of(nPage, size);
-        return personRepository.findAll(pageable);
-    }
-
-    public void deletePersonById(String id) {
+    public void deletePersonById(Integer id){
         Person person = personRepository.findPersonaById(id);
-        if (person == null) {
+        if(person==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
-        if (person.getStudent() != null || person.getProfessor() != null) {
-            throw new EntityNotFoundException("Esta Persona tiene un rol asignado");
-        }
-
         personRepository.delete(personRepository.findPersonaById(id));
     }
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, String idPerson) {
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, Integer idPerson){
 
-        if (personRepository.findPersonaById(idPerson) == null) {
+        if(personRepository.findPersonaById(idPerson)==null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
 
-        if (validator.checkPersonDtoImput(personDtoInput)) {
-            return new PersonOutputDto(personRepository.save(new Person(personDtoInput, idPerson)));
+        if(validator.checkPersonDtoImput(personDtoInput)){
+            return new PersonOutputDto(personRepository.save(new Person(personDtoInput,idPerson)));
         }
         throw new UnprocessableEntityException("Datos no válidos");
     }

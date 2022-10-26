@@ -1,4 +1,4 @@
-package com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.input;
+package com.bosonit.ej3.mongodb.person.infraestructure.controller.input;
 
 import lombok.Data;
 

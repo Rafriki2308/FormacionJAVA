@@ -1,47 +1,38 @@
-package com.bosonit.Ej13.crudvalidation.person.domain;
+package com.bosonit.ej3.mongodb.person.domain;
 
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej13.crudvalidation.professor.domain.Professor;
-import com.bosonit.Ej13.crudvalidation.student.domain.Student;
+
+import com.bosonit.ej3.mongodb.person.infraestructure.controller.input.PersonInputDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table (name="persona")
-public class Person implements Serializable{
+@Document(collection = "personas")
+
+public class Person{
 
     @Id
-    @GeneratedValue(generator = "personGenerator")
-    @GenericGenerator(name = "personGenerator",
-            strategy = "com.bosonit.Ej13.crudvalidation.idGenerator.MyGenerator")
-    @Column(name = "id_persona")
-    private String id;
+    private Integer id;
 
-    @Column (name= "usuario")
+
     private String user;
 
-    @Column
     private String password;
 
-    @Column
     private String name;
 
-    @Column
     private String surname;
 
-    @Column
     private String company_email;
 
-    @Column
     private String personal_email;
 
     @Column
@@ -60,13 +51,6 @@ public class Person implements Serializable{
     private Date termination_date;
 
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
-    private Student student;
-
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
-    private Professor professor;
-
-
     public Person(PersonInputDto persona) {
 
             setUser(persona.getUser());
@@ -82,7 +66,7 @@ public class Person implements Serializable{
             setTermination_date(persona.getTermination_date());
         }
 
-    public Person(PersonInputDto persona, String idPersona) {
+    public Person(PersonInputDto persona, Integer idPersona) {
 
         setId(idPersona);
         setUser(persona.getUser());

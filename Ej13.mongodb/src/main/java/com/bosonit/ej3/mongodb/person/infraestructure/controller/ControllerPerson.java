@@ -1,18 +1,12 @@
-package com.bosonit.Ej13.crudvalidation.person.infraestructure.controller;
+package com.bosonit.ej3.mongodb.person.infraestructure.controller;
 
-import com.bosonit.Ej13.crudvalidation.exceptions.UnprocessableEntityException;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output.PersonOutputDto;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej13.crudvalidation.person.application.PersonServiceImpl;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output.PersonOutputFatherDto;
-import com.bosonit.Ej13.crudvalidation.professor.infraestructure.controller.Output.ProfessorOutputFullDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.exceptions.UnprocessableEntityException;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.application.PersonServiceImpl;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.output.PersonOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Pageable;
 
-
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,88 +27,21 @@ public class ControllerPerson {
     }
 
     @GetMapping("/{id}")
-    public Object getPersonById(@PathVariable String id, @RequestParam String outputType) {
+    public PersonOutputDto getPersonById(@PathVariable String id){
 
-        return servicePersonRepository.getPersonById(id, outputType);
-    }
-
-    @GetMapping("/user/{user}")
-    public List<PersonOutputFatherDto> getPersonByUser(@PathVariable String user, @RequestParam String outputType) {
-        return servicePersonRepository.getPersonByUser(user, outputType);
-    }
+            return servicePersonRepository.getPersonById(Integer.parseInt(id));
+        }
 
     @GetMapping("/all")
-    public List<PersonOutputFatherDto> getAllPeople(@RequestParam String outputType) {
-        return servicePersonRepository.getAllPeople(outputType);
-    }
-
-    @GetMapping("/professor/{id}")
-    public ProfessorOutputFullDto getProffesorById(@PathVariable String id) {
-        return servicePersonRepository.getProffesorUsingFeign(id);
-    }
-
-    @GetMapping("/greaterThan/user")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanUser(@RequestParam String user,
-                                                                @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getGreaterPeopleByUser(user, order);
-    }
-
-    @GetMapping("/lessThan/user")
-    public List<PersonOutputFatherDto> getPeopleLessThanUser(@RequestParam String user,
-                                                             @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getLessPeopleByUser(user, order);
-    }
-
-    @GetMapping("/greaterThan/name")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanName(@RequestParam String name,
-                                                                @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getGreaterPeopleByName(name, order);
-    }
-
-    @GetMapping("/lessThan/name")
-    public List<PersonOutputFatherDto> getPeopleLessThanName(@RequestParam String name,
-                                                             @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getLessPeopleByName(name, order);
-    }
-
-    @GetMapping("/greaterThan/surname")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanSurname(@RequestParam String surname,
-                                                                   @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getGreaterPeopleBySurname(surname, order);
-    }
-
-    @GetMapping("/lessThan/surname")
-    public List<PersonOutputFatherDto> getPeopleLessThanSurname(@RequestParam String surname,
-                                                                @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getLessPeopleBySurname(surname, order);
-    }
-
-    @GetMapping("/greaterThan/dateCreated")
-    public List<PersonOutputFatherDto> getPeopleGreaterThanDateCreated(@RequestParam Date dateCreate,
-                                                                       @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getGreaterPeopleByDateCreate(dateCreate, order);
-    }
-
-    @GetMapping("/lessThan/dateCreated")
-    public List<PersonOutputFatherDto> getPeopleLessThandateCreated(@RequestParam Date dateCreated,
-                                                                    @RequestParam(defaultValue = "none") String order) {
-        return servicePersonRepository.getLessPeopleByDateCreate(dateCreated, order);
-    }
-
-    @GetMapping(path = "/paginacion")
-    public Page loadPeoplePage(@RequestParam Integer nPage,
-                                                      @RequestParam (defaultValue = "10") Integer size) {
-        return servicePersonRepository.getPeoplePage(nPage, size);
-    }
+    public List<PersonOutputDto> getAllPeople(){return servicePersonRepository.getAllPeople();}
 
     @DeleteMapping("/{id}")
-    public void deletePersonById(@PathVariable String id) {
-        servicePersonRepository.deletePersonById(id);
-    }
+    public void deletePersonById(@PathVariable String id){
+        servicePersonRepository.deletePersonById(Integer.parseInt(id));}
 
     @PutMapping("/{id}")
-    public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput, @PathVariable String id) {
-        return servicePersonRepository.modifyPerson(personDtoInput, id);
+    public PersonOutputDto updatePerson(@RequestBody PersonInputDto personDtoInput, @PathVariable String id){
+        return servicePersonRepository.modifyPerson(personDtoInput, Integer.parseInt(id));
     }
 
 }

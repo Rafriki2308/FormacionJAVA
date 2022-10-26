@@ -1,7 +1,7 @@
-package com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.output;
+package com.bosonit.ej3.mongodb.person.infraestructure.controller.output;
 
-import com.bosonit.Ej13.crudvalidation.person.domain.Person;
-import com.bosonit.Ej13.crudvalidation.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.domain.Person;
+import com.bosonit.Ej10.Dockerizacionaplicacion.person.infraestructure.controller.input.PersonInputDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonOutputDto extends PersonOutputFatherDto {
+public class PersonOutputDto {
 
-    private String id;
+    private Integer id;
 
     private String user;
 
