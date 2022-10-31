@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Launch 8080 Changing file directory" type="Application" factoryName="Application">
+    <envs>
+      <env name="file.path" value=" uploaded" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.bosonit.ej13.uploaddownloadfile.Application" />
+    <module name="ej13.upload-download-file" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
