@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  db:
+  postgres_db:
     image: postgres
     container_name: postgres
     restart: always
@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - local_postgres:/var/lib/postgresql/data
+    networks:
+      - postgres_network
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
@@ -22,7 +24,26 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres_db
+    networks:
+      - postgres_network
+
+  dbeaver_web:
+    image: dbeaver/cloudbeaver
+    container_name: dbeaverWeb
+    ports:
+      - "8978:8978"
+    depends_on:
+      - postgres_db
+    networks:
+      - postgres_network
 
 volumes:
   local_postgres:
   pgadmin-data:
+
+networks:
+  postgres_network:
+    name: postgres_net
+    driver: bridge
