@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.stream.Stream;
 
 @Service
@@ -16,14 +17,13 @@ public class FileDBServiceImpl implements FileDBService{
     @Autowired
     private FileDBRepository fR;
 
-    public FileDB store(MultipartFile file) throws IOException{
+    public FileDB store(MultipartFile file, Path root) throws IOException{
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB fileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
+        FileDB fileDB = new FileDB(fileName, file.getContentType(),root.toString());
 
         return fR.save(fileDB);
     }
-
-    public FileDB getFile(String id){
+    public FileDB getFileById(String id){
         return fR.getReferenceById(id);
     }
 
