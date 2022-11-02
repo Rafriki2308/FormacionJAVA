@@ -27,11 +27,17 @@ public class ControllerPerson {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getPersonById/{id}")
     public PersonOutputDto getPersonById(@PathVariable String id){
 
             return servicePersonRepository.getPersonById(Integer.parseInt(id));
         }
+
+    @GetMapping("/getPersonByUser/{user}")
+    public List<PersonOutputDto> getPersonByName(@PathVariable String user){
+
+        return servicePersonRepository.getPersonByUser(user);
+    }
 
     @GetMapping("/all")
     public List<PersonOutputDto> getAllPeople(){return servicePersonRepository.getAllPeople();}
