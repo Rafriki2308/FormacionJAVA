@@ -3,35 +3,37 @@ package com.bosonit.Ej14Testing.validator;
 
 import com.bosonit.Ej14Testing.exceptions.UnprocessableEntityException;
 import com.bosonit.Ej14Testing.person.infraestructure.controller.input.PersonInputDto;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
+@NoArgsConstructor
 public class Validator {
 
-    private Boolean checkNullField(String field) throws UnprocessableEntityException {
+    protected Boolean checkNullField(String field) throws UnprocessableEntityException {
         if(field.isEmpty()){
             throw new UnprocessableEntityException("El Campo esta vacio");
         }
         return true;
     }
 
-    private Boolean checkNullFieldDate(Date field) throws UnprocessableEntityException {
+    protected Boolean checkNullFieldDate(Date field) throws UnprocessableEntityException {
         if(field == null){
             throw new UnprocessableEntityException("El Campo esta vacio");
         }
         return true;
     }
 
-    private Boolean checkNullFieldActive(Boolean field) throws UnprocessableEntityException {
+    protected Boolean checkNullFieldActive(Boolean field) throws UnprocessableEntityException {
         if(field == null){
             throw new UnprocessableEntityException("El Campo esta vacio");
         }
         return true;
     }
 
-    private Boolean checkLength(String field) throws Exception {
+    protected Boolean checkLength(String field) throws Exception {
         if(field.length()>5 && field.length()<11){
             return true;
         }
