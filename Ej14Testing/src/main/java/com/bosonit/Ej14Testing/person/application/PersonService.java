@@ -2,7 +2,7 @@ package com.bosonit.Ej14Testing.person.application;
 
 import com.bosonit.Ej14Testing.exceptions.EntityNotFoundException;
 import com.bosonit.Ej14Testing.person.infraestructure.controller.input.PersonInputDto;
-import com.bosonit.Ej14Testing.person.infraestructure.controller.input.output.PersonOutputDto;
+import com.bosonit.Ej14Testing.person.infraestructure.controller.output.PersonOutputDto;
 
 import java.util.List;
 

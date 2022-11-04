@@ -1,4 +1,4 @@
-package com.bosonit.Ej14Testing.person.infraestructure.controller.input.output;
+package com.bosonit.Ej14Testing.person.infraestructure.controller.output;
 
 
 import com.bosonit.Ej14Testing.person.domain.Person;
