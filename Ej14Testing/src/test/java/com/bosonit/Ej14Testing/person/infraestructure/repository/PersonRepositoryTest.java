@@ -1,4 +1,4 @@
-package com.bosonit.Ej14Testing.person.repository;
+package com.bosonit.Ej14Testing.person.infraestructure.repository;
 
 
 import com.bosonit.Ej14Testing.person.domain.Person;
