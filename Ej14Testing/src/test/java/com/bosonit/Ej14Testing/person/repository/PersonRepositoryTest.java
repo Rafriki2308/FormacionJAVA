@@ -1,8 +1,11 @@
-package com.bosonit.Ej14Testing.person.infraestructure.repository;
+package com.bosonit.Ej14Testing.person.repository;
 
 
 import com.bosonit.Ej14Testing.person.domain.Person;
+
 import com.bosonit.Ej14Testing.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.Ej14Testing.person.infraestructure.repository.PersonRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,6 +21,11 @@ class PersonRepositoryTest {
 
     @Autowired
     private PersonRepository underTest;
+
+    @AfterEach
+    void tearDown(){
+        underTest.deleteAll();
+    }
 
     @Test
     void whenAskForFindByUserItReturnListOfUser() {
