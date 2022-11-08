@@ -2,6 +2,7 @@ package com.bosonit.Ej14Testing.validator;
 
 import com.bosonit.Ej14Testing.exceptions.UnprocessableEntityException;
 import com.bosonit.Ej14Testing.person.infraestructure.controller.input.PersonInputDto;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 
+@Tag("ValidatorTest")
 public class ValidatorTest {
 
     @Autowired
