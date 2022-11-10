@@ -10,14 +10,11 @@ import com.bosonit.Ej14Testing.person.infraestructure.repository.PersonRepositor
 import com.bosonit.Ej14Testing.validator.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,13 +74,14 @@ class PersonServiceImplTest {
         verify(personRepository).save(personTest);
         //Then
         assertThat(personOutputDtoCaptured).isEqualTo(new PersonOutputDto(personTest));
+
     }
 
     @Test
     void whenAddBadFormedPersonThrowsException() {
 
         //Given
-        PersonInputDto personTest = new PersonInputDto(
+        PersonInputDto personTest2 = new PersonInputDto(
                 "",
                 "password",
                 "name",
@@ -98,7 +96,7 @@ class PersonServiceImplTest {
         );
 
         //Then
-        assertThrows(UnprocessableEntityException.class, () -> underTest.addPerson(personTest));
+        assertThrows(UnprocessableEntityException.class, () -> underTest.addPerson(personTest2));
     }
 
     @Test
@@ -106,7 +104,8 @@ class PersonServiceImplTest {
         //Given
         personTest.setId(1);
         Integer id = 1;
-        //when
+
+        //When
         //Esta linea asegura que cuando relice la peticion a la base de datos me devuelva personTest
         when(personRepository.findPersonaById(id)).thenReturn(personTest);
 
@@ -114,8 +113,8 @@ class PersonServiceImplTest {
         PersonOutputDto personCaptured = underTest.getPersonById(personTest.getId());
         //Esta linea lo unico que hace es varificar que se realiza la peticion
         verify(personRepository).findPersonaById(id);
-        //then
 
+        //Then
         Integer idCapturde = personCaptured.getId();
         Assertions.assertEquals(id, idCapturde);
 
@@ -126,28 +125,29 @@ class PersonServiceImplTest {
         //Given
         personTest.setId(1);
         Integer id = 1;
-        //when
+
+        //When
         //Esta linea asegura que cuando relice la peticion a la base de datos me devuelva un null
         when(personRepository.findPersonaById(id)).thenReturn(null);
 
+        //When
         //Esta linea certifica que si la persona es nula, el metodo lanza excepcion
         assertThrows(EntityNotFoundException.class, () -> underTest.getPersonById(id));
 
         //Esta linea lo unico que hace es varificar que se realiza la peticion
         verify(personRepository).findPersonaById(id);
-        //then
-
     }
 
     @Test
-        //ojo no funciona correctamente y no se porque
     void getPersonByUser() {
+
         //Given
         List<Person> peopleToTest = new ArrayList<>();
         peopleToTest.add(personTest);
         peopleToTest.add(personTest);
         String userToFind = "usuario";
 
+        //When
         when(personRepository.findByUser(userToFind)).thenReturn(peopleToTest);
 
         //Aqui Utilizo el metodo del service y tiene la peticion a repository que me devuelve lo indicado anteriormente
@@ -155,8 +155,8 @@ class PersonServiceImplTest {
 
         //Esta linea lo unico que hace es varificar que se realiza la peticion
         verify(personRepository).findByUser(userToFind);
-        //then
 
+        //Then
         Assertions.assertEquals(2, peopleCaptured.size());
 
     }
@@ -171,22 +171,27 @@ class PersonServiceImplTest {
         //When
         //En este caso cuando se consulta al repositorio devuelve un List vacio
         when(personRepository.findByUser(userToFind)).thenReturn(peopleToTest);
-        //then
+
+        //Then
         //En esta linea mediante lambda usuamos el metodo y vemos que lanza excepcion
         Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.getPersonByUser(userToFind));
         verify(personRepository).findByUser(userToFind);
+
     }
 
     @Test
     void canGetAllPeople() {
+
         //Given
         List<Person> peopleToTest = new ArrayList<>();
         peopleToTest.add(personTest);
         peopleToTest.add(personTest);
+
         //When
         when(personRepository.findAll()).thenReturn(peopleToTest);
         List<PersonOutputDto> personOutputDtos = underTest.getAllPeople();
         verify(personRepository).findAll();
+
         //Then
         Assertions.assertEquals(2, personOutputDtos.size());
     }
@@ -200,7 +205,8 @@ class PersonServiceImplTest {
         //When
         //En este caso cuando se consulta al repositorio devuelve un List vacio
         when(personRepository.findAll()).thenReturn(peopleToTest);
-        //then
+
+        //Then
         //En esta linea mediante lambda usuamos el metodo y vemos que lanza excepcion
         Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.getAllPeople());
         verify(personRepository).findAll();
@@ -208,23 +214,36 @@ class PersonServiceImplTest {
 
     @Test
     void canDeletePersonById() {
+
+        //Given
         Integer id = 1;
+
+        //When
         when(personRepository.findPersonaById(id)).thenReturn(personTest);
         underTest.deletePersonById(id);
+
+        //Then
         verify(personRepository).delete(personTest);
 
     }
 
     @Test
     void whenDeletePersonByIdThrowsException() {
+
+        //Given
         Integer id = 1;
+
+        //When
         when(personRepository.findPersonaById(id)).thenReturn(null);
+
+        //Then
         Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.deletePersonById(id));
     }
 
     @Test
     void canModifyPerson() {
 
+        //Given
         Integer id = 1;
         PersonInputDto personInputDtoTest2 = new PersonInputDto(
                 "usuario2",
@@ -242,17 +261,21 @@ class PersonServiceImplTest {
         Person personTest2 = new Person(personInputDtoTest2);
         personTest2.setId(1);
 
+        //When
         when(personRepository.findPersonaById(id)).thenReturn(personTest);
         when(personRepository.save(personTest2)).thenReturn(personTest2);
-        PersonOutputDto personCaptured = underTest.modifyPerson(personInputDtoTest2,id);
+        PersonOutputDto personCaptured = underTest.modifyPerson(personInputDtoTest2, id);
         verify(personRepository).save(personTest2);
 
-        Assertions.assertEquals(personCaptured,new PersonOutputDto(personTest2));
+        //Then
+        Assertions.assertEquals(personCaptured, new PersonOutputDto(personTest2));
 
     }
 
     @Test
     void whenModifyPersonByIdAndPersonDoesNotExitsThrowsException() {
+
+        //Given
         PersonInputDto personInputDtoTest2 = new PersonInputDto(
                 "usuario2",
                 "password",
@@ -268,13 +291,17 @@ class PersonServiceImplTest {
         );
         Integer id = 1;
 
+        //When
         when(personRepository.findPersonaById(id)).thenReturn(null);
 
-        Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.modifyPerson(personInputDtoTest2,id));
+        //Then
+        Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.modifyPerson(personInputDtoTest2, id));
     }
 
     @Test
     void whenModifyPersonByIdAndPersonIsNotWellFormedThrowsException() {
+
+        //Given
         Integer id = 1;
         PersonInputDto personInputDtoTest2 = new PersonInputDto(
                 "us",
@@ -292,8 +319,10 @@ class PersonServiceImplTest {
         Person personTest2 = new Person(personInputDtoTest2);
         personTest2.setId(1);
 
+        //When
         when(personRepository.findPersonaById(id)).thenReturn(personTest);
 
-        Assertions.assertThrows(UnprocessableEntityException.class, () -> underTest.modifyPerson(personInputDtoTest2,id));
+        //Then
+        Assertions.assertThrows(UnprocessableEntityException.class, () -> underTest.modifyPerson(personInputDtoTest2, id));
     }
 }
