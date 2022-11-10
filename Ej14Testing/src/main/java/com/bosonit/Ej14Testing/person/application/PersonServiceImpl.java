@@ -19,10 +19,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements PersonService {
 
     @Autowired
-
     private final PersonRepository personRepository;
 
     @Autowired
@@ -33,54 +32,56 @@ public class PersonServiceImpl implements PersonService{
 
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
-        if(validator.checkPersonDtoImput(personDtoInput)){
-             return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
+        if (validator.checkPersonDtoInput(personDtoInput)) {
+            return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
+
         }
         throw new UnprocessableEntityException("Datos no válidos");
     }
 
+
     public PersonOutputDto getPersonById(Integer id) throws EntityNotFoundException {
         Person person = personRepository.findPersonaById(id);
-        if(person==null) {
+        if (person == null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
         return new PersonOutputDto(person);
     }
 
-    public List<PersonOutputDto> getPersonByUser(String name){
+    public List<PersonOutputDto> getPersonByUser(String name) {
         List<Person> listPerson = new ArrayList<>(personRepository.findByUser(name));
 
-        if(listPerson==null) {
+        if (listPerson.size() < 1) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
         return personResponseDto.mappingPersonToPersonDtoOutput(listPerson);
     }
 
-    public List<PersonOutputDto> getAllPeople(){
-         List<Person> listPeople = personRepository.findAll();
+    public List<PersonOutputDto> getAllPeople() {
+        List<Person> listPeople = personRepository.findAll();
 
-        if(listPeople==null) {
+        if (listPeople.size() < 1) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
         return personResponseDto.mappingPersonToPersonDtoOutput(listPeople);
     }
 
-    public void deletePersonById(Integer id){
+    public void deletePersonById(Integer id) {
         Person person = personRepository.findPersonaById(id);
-        if(person==null) {
+        if (person == null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
         personRepository.delete(personRepository.findPersonaById(id));
     }
 
-    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, Integer idPerson){
+    public PersonOutputDto modifyPerson(PersonInputDto personDtoInput, Integer idPerson) {
 
-        if(personRepository.findPersonaById(idPerson)==null) {
+        if (personRepository.findPersonaById(idPerson) == null) {
             throw new EntityNotFoundException("El usuario no ha sido encontrado");
         }
 
-        if(validator.checkPersonDtoImput(personDtoInput)){
-            return new PersonOutputDto(personRepository.save(new Person(personDtoInput,idPerson)));
+        if (validator.checkPersonDtoInput(personDtoInput)) {
+            return new PersonOutputDto(personRepository.save(new Person(personDtoInput, idPerson)));
         }
         throw new UnprocessableEntityException("Datos no válidos");
     }
