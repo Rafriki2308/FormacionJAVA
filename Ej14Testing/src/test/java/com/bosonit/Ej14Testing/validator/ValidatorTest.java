@@ -76,7 +76,6 @@ public class ValidatorTest {
     @Test
     public void whenPersonDtoInputIsWellFormedReturnTrue(){
         Date date = new Date();
-        Date date2 = new Date();
         PersonInputDto personTest = new PersonInputDto(
                 "usuario",
                 "password",
@@ -88,10 +87,10 @@ public class ValidatorTest {
                 true,
                 date,
                 "image_url",
-                date2
+                date
                 );
 
-        assertThat(validator.checkPersonDtoImput(personTest)).isTrue();
+        assertThat(validator.checkPersonDtoInput(personTest)).isTrue();
     }
 
     @Test
@@ -138,11 +137,9 @@ public class ValidatorTest {
                 date2
         );
 
-
-
-        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoImput(personTest1));
-        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoImput(personTest2));
-        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoImput(personTest3));
+        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoInput(personTest1));
+        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoInput(personTest2));
+        assertThrows(UnprocessableEntityException.class,()->validator.checkPersonDtoInput(personTest3));
     }
 
 }
