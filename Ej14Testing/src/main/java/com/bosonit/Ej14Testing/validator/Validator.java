@@ -40,7 +40,7 @@ public class Validator {
         throw new UnprocessableEntityException("El campo user es menor de 6 caracteres o mayor de 11 caracteres");
     }
 
-    public Boolean checkPersonDtoImput(PersonInputDto personDtoInput) {
+    public Boolean checkPersonDtoInput(PersonInputDto personDtoInput) {
         Boolean userIsValid = null;
         try {
             userIsValid = checkLength(personDtoInput.getUser()) && checkNullField(personDtoInput.getUser());
