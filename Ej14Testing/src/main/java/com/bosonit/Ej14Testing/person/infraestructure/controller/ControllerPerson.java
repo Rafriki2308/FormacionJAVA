@@ -18,13 +18,9 @@ public class ControllerPerson {
     private PersonServiceImpl servicePersonRepository;
 
     @PostMapping("")
-    public PersonOutputDto addPerson(@RequestBody PersonInputDto personDtoInput) throws UnprocessableEntityException {
-        try {
-            return servicePersonRepository.addPerson(personDtoInput);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public PersonOutputDto addPerson(@RequestBody PersonInputDto personDtoInput){
 
+            return servicePersonRepository.addPerson(personDtoInput);
     }
 
     @GetMapping("/getPersonById/{id}")
