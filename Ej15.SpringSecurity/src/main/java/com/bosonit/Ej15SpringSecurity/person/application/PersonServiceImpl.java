@@ -32,6 +32,7 @@ public class PersonServiceImpl implements PersonService {
 
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
+
         if (validator.checkPersonDtoInput(personDtoInput)) {
             return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
 
