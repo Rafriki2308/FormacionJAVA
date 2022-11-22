@@ -30,6 +30,13 @@ public class Ej15Security implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_USER"))));
+		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_MANAGER"))));
+		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_ADMIN"))));
+		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_SUPER_ADMIN"))));
+
+
+
 		PersonInputDto personInputDto = new PersonInputDto(
 				"Rafael",
 				"password",
@@ -46,12 +53,9 @@ public class Ej15Security implements CommandLineRunner {
 
 
 
-		RoleInputDto roleInputDto = new RoleInputDto("Administrador");
-		log.info(String.valueOf(roleInputDto));
 
-		log.info(String.valueOf(roleServiceImp.addRole(roleInputDto)));
 
-		log.info(String.valueOf(roleServiceImp.addRoleToPerson("Rafael","Administrador")));
+		log.info(String.valueOf(roleServiceImp.addRoleToPerson("Rafael","ROLE_ADMIN")));
 
 
 
