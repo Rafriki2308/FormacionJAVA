@@ -1,6 +1,0 @@
-projectKey=Ej14TestJUnit
-serverUrl=http://localhost:9001
-serverVersion=8.9.7.52159
-dashboardUrl=http://localhost:9001/dashboard?id=Ej14TestJUnit
-ceTaskId=AYSGtaPj9wPu3eeO0TBD
-ceTaskUrl=http://localhost:9001/api/ce/task?id=AYSGtaPj9wPu3eeO0TBD
