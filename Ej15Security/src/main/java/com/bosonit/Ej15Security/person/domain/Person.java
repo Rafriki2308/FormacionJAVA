@@ -18,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table (name="persona")
-public class Person implements Serializable{
+public class Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -92,6 +92,10 @@ public class Person implements Serializable{
         setCreated_date(persona.getCreated_date());
         setImagen_url(persona.getImagen_url());
         setTermination_date(persona.getTermination_date());
+    }
+
+    public Collection<Role> getRoles(){
+        return this.roles;
     }
 
 

@@ -3,10 +3,16 @@ package com.bosonit.Ej15Security.person.infraestructure.controller.output;
 
 import com.bosonit.Ej15Security.person.domain.Person;
 import com.bosonit.Ej15Security.person.infraestructure.controller.input.PersonInputDto;
+import com.bosonit.Ej15Security.role.domain.Role;
+import com.bosonit.Ej15Security.role.infrastructure.controller.Output.RoleResponseDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Data
@@ -36,6 +42,12 @@ public class PersonOutputDto {
 
     private Date termination_date;
 
+    private Collection<Role> roles = new ArrayList<>();
+
+    @Autowired
+    @JsonIgnore
+    private RoleResponseDto roleResponseDto;
+
     public PersonOutputDto(PersonInputDto persona) {
 
         setUser(persona.getUser());
@@ -48,7 +60,6 @@ public class PersonOutputDto {
         setCreated_date(persona.getCreated_date());
         setImagen_url(persona.getImagen_url());
         setTermination_date(persona.getTermination_date());
-
     }
 
 
@@ -64,5 +75,6 @@ public class PersonOutputDto {
         setCreated_date(persona.getCreated_date());
         setImagen_url(persona.getImagen_url());
         setTermination_date(persona.getTermination_date());
+        setRoles(persona.getRoles());
     }
 }
