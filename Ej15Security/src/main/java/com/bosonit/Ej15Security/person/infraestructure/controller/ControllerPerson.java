@@ -28,7 +28,7 @@ public class ControllerPerson {
             return servicePersonRepository.getPersonById(Integer.parseInt(id));
         }
 
-    @GetMapping("/getPersonByUser/{user}")
+    @GetMapping("/getPersonByUser/{username}")
     public List<PersonOutputDto> getPersonByName(@PathVariable String user){
 
         return servicePersonRepository.getPersonByUser(user);

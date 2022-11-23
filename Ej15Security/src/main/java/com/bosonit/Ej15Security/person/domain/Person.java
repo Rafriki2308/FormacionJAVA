@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -26,7 +25,7 @@ public class Person{
     private Integer id;
 
     @Column (name= "usuario")
-    private String user;
+    private String username;
 
     @Column
     private String password;
@@ -65,7 +64,7 @@ public class Person{
 
     public Person(PersonInputDto persona) {
 
-            setUser(persona.getUser());
+            setUsername(persona.getUser());
             setPassword(persona.getPassword());
             setName(persona.getName());
             setSurname(persona.getSurname());
@@ -81,7 +80,7 @@ public class Person{
     public Person(PersonInputDto persona, Integer idPersona) {
 
         setId(idPersona);
-        setUser(persona.getUser());
+        setUsername(persona.getUser());
         setPassword(persona.getPassword());
         setName(persona.getName());
         setSurname(persona.getSurname());
@@ -97,6 +96,5 @@ public class Person{
     public Collection<Role> getRoles(){
         return this.roles;
     }
-
 
 }

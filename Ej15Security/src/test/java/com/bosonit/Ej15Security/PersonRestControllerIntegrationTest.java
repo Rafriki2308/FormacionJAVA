@@ -158,7 +158,7 @@ public class PersonRestControllerIntegrationTest {
                         .contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].user", Matchers.is("usuario")));
+                .andExpect(jsonPath("$[0].username", Matchers.is("usuario")));
 
     }
 
@@ -202,7 +202,7 @@ public class PersonRestControllerIntegrationTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(personInputDtoModified)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.user", Matchers.is("usuario2")));
+                .andExpect(jsonPath("$.username", Matchers.is("usuario2")));
     }
 
     @Test

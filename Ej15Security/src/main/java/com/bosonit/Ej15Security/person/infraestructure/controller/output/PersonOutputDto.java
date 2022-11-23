@@ -65,7 +65,7 @@ public class PersonOutputDto {
 
     public PersonOutputDto(Person persona){
         setId(persona.getId());
-        setUser(persona.getUser());
+        setUser(persona.getUsername());
         setName(persona.getName());
         setSurname(persona.getSurname());
         setCompany_email(persona.getCompany_email());

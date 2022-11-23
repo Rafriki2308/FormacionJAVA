@@ -72,7 +72,7 @@ class PersonRepositoryTest {
         List<Person> peopleToTest = new ArrayList<>();
         peopleToTest.add(personSavedTest);
 
-        List<Person> peopleObtain = underTest.findByName(personSavedTest.getUser());
+        List<Person> peopleObtain = underTest.findByName(personSavedTest.getUsername());
 
         assertThat(peopleToTest).isEqualTo(peopleObtain);
     }
