@@ -4,11 +4,18 @@ import com.bosonit.Ej15Security.person.application.PersonServiceImpl;
 import com.bosonit.Ej15Security.person.infraestructure.controller.input.PersonInputDto;
 import com.bosonit.Ej15Security.role.application.RoleServiceImp;
 import com.bosonit.Ej15Security.role.infrastructure.controller.Input.RoleInputDto;
+import com.bosonit.Ej15Security.security.config.WebSecurityConfing;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +24,7 @@ import java.util.List;
 @SpringBootApplication
 @Slf4j
 public class Ej15Security implements CommandLineRunner {
+
 	@Autowired
 	private PersonServiceImpl personService;
 
@@ -38,8 +46,8 @@ public class Ej15Security implements CommandLineRunner {
 
 
 		PersonInputDto personInputDto = new PersonInputDto(
-				"Rafael",
-				"password",
+				"rafael",
+				"$2a$10$M6ygwvpGEdPpekG86MyLTuZBWG2v2nrqzwguonumuVjxqcKpostfq",
 				"Rafael",
 				"Rafael",
 				"Rafael.martinez@bosonit.com",
@@ -51,15 +59,7 @@ public class Ej15Security implements CommandLineRunner {
 				new Date());
 		log.info(String.valueOf(personService.addPerson(personInputDto)));
 
-
-
-
-
-		log.info(String.valueOf(roleServiceImp.addRoleToPerson("Rafael","ROLE_ADMIN")));
-
-
-
-
+		log.info(String.valueOf(roleServiceImp.addRoleToPerson("rafael","ROLE_ADMIN")));
 	}
 
 }
