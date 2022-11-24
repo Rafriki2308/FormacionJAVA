@@ -38,7 +38,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UsernamePasswordAuthenticationToken usernamePAT = new UsernamePasswordAuthenticationToken(
                 authCredentials.getUsername(),
                 authCredentials.getPassword(),
-                Collections.emptyList()
+                authCredentials.getRoles()
         );
         return getAuthenticationManager().authenticate(usernamePAT);
     }
@@ -54,7 +54,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //Capturamos un usuario y lo guardamos en la clase UserDetailImpl
         UserDetailImpl userDetail = (UserDetailImpl) authResult.getPrincipal();
         //Realizamos un token con los datos de dicho usuario
-        String token = TokenUtils.createToken(userDetail.getUsername(), userDetail.getNane());
+        String token = TokenUtils.createToken(
+                userDetail.getUsername(),
+                userDetail.getNane());
 
         //Modificamos la respuesta para poder agregar el token
         //Pondremos el nombre del encabezado y el Standar Bearer y el token

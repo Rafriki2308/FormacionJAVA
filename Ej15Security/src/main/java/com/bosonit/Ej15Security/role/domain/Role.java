@@ -5,6 +5,7 @@ import com.bosonit.Ej15Security.role.infrastructure.controller.Input.RoleInputDt
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -25,4 +26,5 @@ public class Role {
     public Role (RoleInputDto roleInputDto){
        setName(roleInputDto.getRoleName());
     }
+
 }

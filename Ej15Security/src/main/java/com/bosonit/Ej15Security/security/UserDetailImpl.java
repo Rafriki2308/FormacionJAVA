@@ -1,6 +1,7 @@
 package com.bosonit.Ej15Security.security;
 
 import com.bosonit.Ej15Security.person.domain.Person;
+import com.bosonit.Ej15Security.role.domain.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,10 +15,11 @@ public class UserDetailImpl implements UserDetails {
 
     private final Person person;
 
+
     //retorna los roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return person.getRoles();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.bosonit.Ej15Security.security.filter.JWTAuthorizationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.swing.text.html.FormSubmitEvent;
+
+import static javax.swing.text.html.FormSubmitEvent.MethodType.GET;
+import static javax.swing.text.html.FormSubmitEvent.MethodType.POST;
 
 @Configuration
 @AllArgsConstructor
@@ -39,6 +45,8 @@ public class WebSecurityConfing {
         return http
                 .csrf().disable() //Deshabilita crosfire request forged, para evitar peticiones maliciosas
                 .authorizeHttpRequests()
+                .antMatchers(HttpMethod.POST)
+                .hasAnyRole("ROLE_ADMIN")
                 .anyRequest() //Para cualquier request
                 .authenticated() //Autentica
                 //.and()//y
@@ -76,12 +84,14 @@ public class WebSecurityConfing {
                 .build();
     }
 
-
-
     //Este metodo encripta el password
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("1234"));
     }
 
 }

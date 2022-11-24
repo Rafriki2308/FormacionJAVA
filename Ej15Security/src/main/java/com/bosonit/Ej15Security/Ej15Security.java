@@ -57,9 +57,24 @@ public class Ej15Security implements CommandLineRunner {
 				new Date(),
 				"image.png",
 				new Date());
+
+		PersonInputDto personInputDto2 = new PersonInputDto(
+				"deadpool",
+				"$2a$10$M6ygwvpGEdPpekG86MyLTuZBWG2v2nrqzwguonumuVjxqcKpostfq",
+				"deadpool",
+				"Rafael",
+				"Rafael.martinez@bosonit.com",
+				"Rafael@gmail.com",
+				"Polopos",
+				true,
+				new Date(),
+				"image.png",
+				new Date());
 		log.info(String.valueOf(personService.addPerson(personInputDto)));
+		log.info(String.valueOf(personService.addPerson(personInputDto2)));
 
 		log.info(String.valueOf(roleServiceImp.addRoleToPerson("rafael","ROLE_ADMIN")));
+		log.info(String.valueOf(roleServiceImp.addRoleToPerson("deadpool","ROLE_USER")));
 	}
 
 }

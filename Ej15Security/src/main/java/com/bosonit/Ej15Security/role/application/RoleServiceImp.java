@@ -41,7 +41,7 @@ public class RoleServiceImp implements RoleService{
     @Override
     public PersonOutputDto addRoleToPerson(String username, String roleName) {
 
-        Person person = pR.findByUser(username);
+        Person person = pR.findByUsername(username);
         if(person.equals(null)){
             throw new EntityNotFoundException("The person doesn't exist");
         }
