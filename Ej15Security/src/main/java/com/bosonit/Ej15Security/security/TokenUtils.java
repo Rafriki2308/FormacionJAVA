@@ -20,30 +20,25 @@ public class TokenUtils {
     private final static String ACCESS_TOKEN_SECRET="0758da1fe9134f30a587181db8b1e4eb";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS=2_592_000L; //Tiempo validez del token
     private static final String AUTHORITIES_KEY = "authorities" ;
+    private static String AUTHORITIES="";
 
-    @Autowired
-    private PersonRepository personRepository;
     //Este metodo crea un token en funcion de las opciones que deseemos
     public static String createToken(String name, String username, Authentication authentication){
 
         //Este bloque define el tiempo de expiracion del token
-        long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
+        final long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
         Date expirationDate= new Date(System.currentTimeMillis() + expirationTime);
-        final String authorities = authentication.getAuthorities().stream()
+        //Añade los roles que tiene el usuario a un String
+        AUTHORITIES = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-
-        //Este bloque añade un extra de informacion al token
-        Map<String, Object> extra = new HashMap<>();
-        extra.put("name",name);
 
         Algorithm algorithm = Algorithm.HMAC256(ACCESS_TOKEN_SECRET.getBytes()); //Create hash algorithm
 
         return Jwts.builder()
                 .setSubject(username) //Introducimos usuario
                 .setExpiration(expirationDate)//Tiempo que expira el token
-                .claim(AUTHORITIES_KEY, authorities)
-                .addClaims(extra)//Añade informacion adicional
+                .claim(AUTHORITIES_KEY, AUTHORITIES) //Insertamos lo roles en el token
                 .signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
                 .compact();
     }
@@ -62,7 +57,6 @@ public class TokenUtils {
                     Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                             .map(SimpleGrantedAuthority::new)
                             .collect(Collectors.toList());
-            Collection<GrantedAuthority> roles = new ArrayList<>();
 
             return new UsernamePasswordAuthenticationToken(username, null, authorities);
 
