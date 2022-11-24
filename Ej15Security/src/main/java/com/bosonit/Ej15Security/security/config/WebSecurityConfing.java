@@ -45,7 +45,7 @@ public class WebSecurityConfing {
         return http
                 .csrf().disable() //Deshabilita crosfire request forged, para evitar peticiones maliciosas
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST)
+                .antMatchers("/persona/all")
                 .hasAnyRole("ROLE_ADMIN")
                 .anyRequest() //Para cualquier request
                 .authenticated() //Autentica

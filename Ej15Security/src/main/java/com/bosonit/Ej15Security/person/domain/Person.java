@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -59,7 +59,7 @@ public class Person{
 
     @Column
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
 
     public Person(PersonInputDto persona) {
@@ -93,7 +93,7 @@ public class Person{
         setTermination_date(persona.getTermination_date());
     }
 
-    public Collection<Role> getRoles(){
+    public List<Role> getRoles(){
         return this.roles;
     }
 
