@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 
 //Este es un filto para la autenticacion, comprueba si tus credenciales son correctas o no
@@ -25,7 +27,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
 
-        AuthCredentials authCredentials = new AuthCredentials();
+        AuthCredentials authCredentials;
 
         //Este bloque comprueba las credenciales que ha tomado de la request
         //En caso de fallo devuelve una excepcion.
@@ -37,12 +39,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         UsernamePasswordAuthenticationToken usernamePAT = new UsernamePasswordAuthenticationToken(
                 authCredentials.getUsername(),
-                authCredentials.getPassword()
+                authCredentials.getPassword(),
+                authCredentials.getRoles()
         );
         return getAuthenticationManager().authenticate(usernamePAT);
     }
 
-    //Este filtro se aplica en caso que la autenticacion sea correcta
+    //Esta clase se encarga de devolver el token atraves del Header
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
@@ -55,7 +58,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //Realizamos un token con los datos de dicho usuario
         String token = TokenUtils.createToken(
                 userDetail.getUsername(),
-                userDetail.getNane());
+                userDetail.getNane(),
+                authResult);
 
         //Modificamos la respuesta para poder agregar el token
         //Pondremos el nombre del encabezado y el Standar Bearer y el token

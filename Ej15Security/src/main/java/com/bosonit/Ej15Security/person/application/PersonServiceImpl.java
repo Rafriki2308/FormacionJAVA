@@ -11,6 +11,7 @@ import com.bosonit.Ej15Security.person.infraestructure.repository.PersonReposito
 import com.bosonit.Ej15Security.validator.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -33,6 +34,7 @@ public class PersonServiceImpl implements PersonService {
 
     public PersonOutputDto addPerson(PersonInputDto personDtoInput) throws UnprocessableEntityException {
         if (validator.checkPersonDtoInput(personDtoInput)) {
+            personDtoInput.setPassword(new BCryptPasswordEncoder().encode(personDtoInput.getPassword()));
             return new PersonOutputDto(personRepository.save(new Person(personDtoInput)));
 
         }

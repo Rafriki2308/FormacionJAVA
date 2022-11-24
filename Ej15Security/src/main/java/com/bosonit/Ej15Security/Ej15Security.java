@@ -47,7 +47,7 @@ public class Ej15Security implements CommandLineRunner {
 
 		PersonInputDto personInputDto = new PersonInputDto(
 				"rafael",
-				"$2a$10$M6ygwvpGEdPpekG86MyLTuZBWG2v2nrqzwguonumuVjxqcKpostfq",
+				"password",
 				"Rafael",
 				"Rafael",
 				"Rafael.martinez@bosonit.com",
@@ -60,7 +60,7 @@ public class Ej15Security implements CommandLineRunner {
 
 		PersonInputDto personInputDto2 = new PersonInputDto(
 				"deadpool",
-				"$2a$10$M6ygwvpGEdPpekG86MyLTuZBWG2v2nrqzwguonumuVjxqcKpostfq",
+				"password",
 				"deadpool",
 				"Rafael",
 				"Rafael.martinez@bosonit.com",

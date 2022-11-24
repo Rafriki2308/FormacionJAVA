@@ -22,7 +22,7 @@ public class UserDetailImpl implements UserDetails {
 
     //retorna los roles
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<GrantedAuthority> getAuthorities() {
         return mapRolesToAuthorities(person.getRoles());
     }
     private Collection<GrantedAuthority> mapRolesToAuthorities(List<Role> roles){

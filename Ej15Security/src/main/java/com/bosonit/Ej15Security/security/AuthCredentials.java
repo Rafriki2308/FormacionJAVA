@@ -15,6 +15,6 @@ public class AuthCredentials {
 
     private String username;
     private String password;
-    private List<Role> roles = new ArrayList<>();
+    private Collection<GrantedAuthority> roles = new ArrayList<>();
 
 }
