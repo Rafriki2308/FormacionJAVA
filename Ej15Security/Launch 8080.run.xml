@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Launch 8080" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.bosonit.Ej15Security.Ej15Security" />
+    <module name="Ej15Security" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
