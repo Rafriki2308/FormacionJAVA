@@ -26,4 +26,9 @@ public class Role {
        setName(roleInputDto.getRoleName());
     }
 
+    public Role (RoleInputDto roleInputDto, Integer id){
+        setName(roleInputDto.getRoleName());
+        setIdRole(id);
+    }
+
 }

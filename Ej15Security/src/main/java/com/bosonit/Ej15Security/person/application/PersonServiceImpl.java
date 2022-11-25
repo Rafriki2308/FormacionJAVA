@@ -99,6 +99,7 @@ public class PersonServiceImpl implements PersonService, UserDetailsService {
         }
 
         if (validator.checkPersonDtoInput(personDtoInput)) {
+            personDtoInput.setPassword(new BCryptPasswordEncoder().encode(personDtoInput.getPassword()));
             return new PersonOutputDto(personRepository.save(new Person(personDtoInput, idPerson)));
         }
         throw new UnprocessableEntityException("Datos no válidos");

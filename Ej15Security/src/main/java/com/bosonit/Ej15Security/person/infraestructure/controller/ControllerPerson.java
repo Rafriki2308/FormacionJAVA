@@ -7,6 +7,7 @@ import com.bosonit.Ej15Security.person.infraestructure.controller.output.PersonO
 import com.bosonit.Ej15Security.role.application.RoleServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,9 +56,13 @@ public class ControllerPerson {
 
     @DeleteMapping("/{id}")
     public Object deletePersonById(@PathVariable String id) {
-
-        servicePersonRepository.deletePersonById(Integer.parseInt(id));
-        return ResponseEntity.ok().body("Person Deleted");
+        try {
+            servicePersonRepository.deletePersonById(Integer.parseInt(id));
+            return ResponseEntity.ok().body("Person Deleted");
+        } catch (
+                EmptyResultDataAccessException e) {
+            return ResponseEntity.badRequest().body("Role doesn't exists");
+        }
     }
 
 

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +59,21 @@ public class RoleServiceImp implements RoleService{
     @Override
     public List<RoleOutputDto> getAllRoles() {
         return roleResponseDto.mappingRoleToRoleDtoOutput(rR.findAll());
+    }
+
+    public RoleOutputDto getRoleById(String id){
+        Role role = rR.findById(Integer
+                .parseInt(id))
+                .orElseThrow(()->new EntityNotFoundException("No existe el id: " + id));
+
+        return new RoleOutputDto(role);
+    }
+
+    public RoleOutputDto updateRoleById(RoleInputDto roleInputDto,String id){
+        if (rR.findById(Integer.parseInt(id)) == null) {
+            throw new EntityNotFoundException("El rol no ha sido encontrado");
+        }
+        return new RoleOutputDto(rR.save(new Role(roleInputDto, Integer.parseInt(id))));
     }
 
     @Override
