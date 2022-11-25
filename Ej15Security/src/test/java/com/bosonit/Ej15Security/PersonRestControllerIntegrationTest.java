@@ -126,7 +126,7 @@ public class PersonRestControllerIntegrationTest {
     @Test
     public void souldFetchAllUsers() throws Exception {
 
-        mvc.perform(delete("/persona/{id}", "2")
+        mvc.perform(delete("/persona/{idRole}", "2")
                         .contentType("application/json"));
 
         mvc.perform(post("/persona").contentType("application/json")
@@ -177,16 +177,16 @@ public class PersonRestControllerIntegrationTest {
         mvc.perform(post("/persona").contentType("application/json")
                 .content(objectMapper.writeValueAsString(personInputDto)));
 
-        mvc.perform(get("/persona/getPersonById/{id}", "6")
+        mvc.perform(get("/persona/getPersonById/{idRole}", "6")
                         .contentType("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", Matchers.is(6)));
+                .andExpect(jsonPath("$.idRole", Matchers.is(6)));
     }
 
     @Test
     public void whenAskPersonByIdButIdPersonNotExistsThrowException() throws Exception {
 
-        mvc.perform(get("/persona/getPersonById/{id}", "1")
+        mvc.perform(get("/persona/getPersonById/{idRole}", "1")
                         .contentType("application/json"))
                 .andExpect(status().isNotFound());
 
@@ -198,7 +198,7 @@ public class PersonRestControllerIntegrationTest {
         mvc.perform(post("/persona").contentType("application/json")
                 .content(objectMapper.writeValueAsString(personInputDto)));
 
-        mvc.perform(put("/persona/{id}", "3")
+        mvc.perform(put("/persona/{idRole}", "3")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(personInputDtoModified)))
                 .andExpect(status().isOk())
@@ -208,7 +208,7 @@ public class PersonRestControllerIntegrationTest {
     @Test
     public void whenAskUpdatePersonByIdAndPersonNotExistsThrowException() throws Exception {
 
-        mvc.perform(put("/persona/{id}", "1")
+        mvc.perform(put("/persona/{idRole}", "1")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(personInputDtoModified)))
                 .andExpect(status().isNotFound());
@@ -219,7 +219,7 @@ public class PersonRestControllerIntegrationTest {
         mvc.perform(post("/persona").contentType("application/json")
                 .content(objectMapper.writeValueAsString(personInputDto)));
 
-        mvc.perform(delete("/persona/{id}", "5")
+        mvc.perform(delete("/persona/{idRole}", "5")
                         .contentType("application/json"))
                 .andExpect(status().isOk());
     }
@@ -227,7 +227,7 @@ public class PersonRestControllerIntegrationTest {
     @Test
     public void whenAskDeletePersonByIdButPersonNotExistsThrowException() throws Exception {
 
-        mvc.perform(delete("/persona/{id}", "1")
+        mvc.perform(delete("/persona/{idRole}", "1")
                         .contentType("application/json"))
                 .andExpect(status().isNotFound());
     }

@@ -20,11 +20,11 @@ import java.util.List;
 public class Person{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PersonTable")
     @Column(name = "id_persona")
-    private Integer id;
+    private Integer idPerson;
 
-    @Column (name= "usuario")
+    @Column (name= "usuario", unique = true)
     private String username;
 
     @Column
@@ -79,7 +79,7 @@ public class Person{
 
     public Person(PersonInputDto persona, Integer idPersona) {
 
-        setId(idPersona);
+        setIdPerson(idPersona);
         setUsername(persona.getUser());
         setPassword(persona.getPassword());
         setName(persona.getName());

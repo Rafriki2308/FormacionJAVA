@@ -1,8 +1,9 @@
 package com.bosonit.Ej15Security.security.config;
 
-import com.bosonit.Ej15Security.security.UserDetailServiceImpl;
-import com.bosonit.Ej15Security.security.filter.JWTAuthenticationFilter;
-import com.bosonit.Ej15Security.security.filter.JWTAuthorizationFilter;
+import com.bosonit.Ej15Security.person.application.PersonServiceImpl;
+import com.bosonit.Ej15Security.security.filter.AuthorizationFilter;
+//import com.bosonit.Ej15Security.security.userDetail.UserDetailServiceImpl;
+import com.bosonit.Ej15Security.security.filter.AuthenticationFilter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -10,53 +11,55 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.swing.text.html.FormSubmitEvent;
-
-import static javax.swing.text.html.FormSubmitEvent.MethodType.GET;
-import static javax.swing.text.html.FormSubmitEvent.MethodType.POST;
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 @Configuration
 @AllArgsConstructor
 @Slf4j
-public class WebSecurityConfing {
+public class SecurityConfig {
 
-    private final UserDetailServiceImpl userDetailsService;
+    private final PersonServiceImpl personService;
 
     //Este filtro se puede instanciar sin necesidad de parametros
-    private final JWTAuthorizationFilter jwtAuthorizationFilter;
+    private final AuthorizationFilter authorizationFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
 
         //Como esta clase la hemos creado nosotros y no es gestionada por el core de security la instanciamos
         //y la configuramos nosotros
-        JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
 
         //Le asignamos el authenticationManager necesario
-        jwtAuthenticationFilter.setAuthenticationManager(this.authManager(http));
-        log.info(String.valueOf(jwtAuthenticationFilter));
+        authenticationFilter.setAuthenticationManager(this.authManager(http));
+
         //Le indicamos el endpoint de inicio de sesion
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+        authenticationFilter.setFilterProcessesUrl("/login");
+
 
         return http
                 .csrf().disable() //Deshabilita crosfire request forged, para evitar peticiones maliciosas
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST)
+                .antMatchers(HttpMethod.POST)//Indica que paginas o metodos estan restrigidos
+                .hasAnyAuthority("ROLE_ADMIN")//Indica quien tiene persmiso a accedera a los recursos indicados arriba
+                .antMatchers(HttpMethod.PUT)
+                .hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers(HttpMethod.DELETE)
+                .hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/role/**")
                 .hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest() //Para cualquier request
                 .authenticated() //Autentica
@@ -66,9 +69,9 @@ public class WebSecurityConfing {
                 .sessionManagement()//gestion de sesiones
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)//Politica de sesiones
                 .and()
-                .addFilter(jwtAuthenticationFilter)//Añadimos el filtro de autenticacion
+                .addFilter(authenticationFilter)//Añadimos el filtro de autenticacion
                 //Este componente añade el filtro de autorizacion antes de la clase indicada
-                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();//Construye el filtro de seguridad
     }
 
@@ -88,9 +91,9 @@ public class WebSecurityConfing {
     //Esta clase autentica la conexion
     @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        log.info(String.valueOf(userDetailsService));
+
         return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
+                .userDetailsService(personService)
                 .passwordEncoder(passwordEncoder())
                 .and()
                 .build();

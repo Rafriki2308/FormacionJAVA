@@ -1,4 +1,4 @@
-package com.bosonit.Ej15Security.security;
+package com.bosonit.Ej15Security.security.userDetail;
 
 import com.bosonit.Ej15Security.person.domain.Person;
 import com.bosonit.Ej15Security.role.domain.Role;
@@ -9,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

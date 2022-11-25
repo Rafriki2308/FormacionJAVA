@@ -1,7 +1,6 @@
 package com.bosonit.Ej15Security.security.filter;
 
-import com.bosonit.Ej15Security.security.TokenUtils;
-import lombok.AllArgsConstructor;
+import com.bosonit.Ej15Security.security.token.TokenUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -14,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //Esta clase se va a encargar, una vez autenticados en decidir donde puede y no puede acceder
-//el usuario
+//el usuario utilizando el filterChain que hemos declarado en la clase setup
 @Component
-public class JWTAuthorizationFilter extends OncePerRequestFilter {
+public class AuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

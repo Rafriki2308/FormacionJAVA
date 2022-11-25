@@ -4,22 +4,13 @@ import com.bosonit.Ej15Security.person.application.PersonServiceImpl;
 import com.bosonit.Ej15Security.person.infraestructure.controller.input.PersonInputDto;
 import com.bosonit.Ej15Security.role.application.RoleServiceImp;
 import com.bosonit.Ej15Security.role.infrastructure.controller.Input.RoleInputDto;
-import com.bosonit.Ej15Security.security.config.WebSecurityConfing;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 @Slf4j
@@ -39,7 +30,6 @@ public class Ej15Security implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_USER"))));
-		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_MANAGER"))));
 		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_ADMIN"))));
 		log.info(String.valueOf(roleServiceImp.addRole(new RoleInputDto("ROLE_SUPER_ADMIN"))));
 

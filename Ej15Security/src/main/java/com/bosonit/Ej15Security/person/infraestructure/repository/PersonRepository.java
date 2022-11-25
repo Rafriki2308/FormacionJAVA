@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Objects> {
-    Person findPersonaById(Integer id);
+    Person findPersonaByIdPerson(Integer idPerson);
 
     List<Person> findByName(String name);
 

@@ -121,7 +121,7 @@ public class ControllerTest {
     public void souldFetchUsersByName() throws Exception {
 
 
-        when(personServiceImp.getPersonByUser("usuario")).thenReturn(peopleOutputDto);
+        when(personServiceImp.getPersonByName("usuario")).thenReturn(peopleOutputDto);
 
 
         mvc.perform(get("/persona/getPersonByUser/{usuario}", "usuario")
@@ -134,9 +134,9 @@ public class ControllerTest {
     @Test
     public void souldFetchUsersById() throws Exception {
 
-        when(personServiceImp.getPersonByUser("1")).thenReturn(peopleOutputDto);
+        when(personServiceImp.getPersonByName("1")).thenReturn(peopleOutputDto);
 
-        mvc.perform(get("/persona/getPersonById/{id}", "1")
+        mvc.perform(get("/persona/getPersonById/{idRole}", "1")
                         .contentType("application/json"))
                 .andExpect(status().isOk());
     }
@@ -144,7 +144,7 @@ public class ControllerTest {
     @Test
     public void souldDeletePerson() throws Exception {
 
-        mvc.perform(delete("/persona/{id}", "1")
+        mvc.perform(delete("/persona/{idRole}", "1")
                         .contentType("application/json"))
                 .andExpect(status().isOk());
     }
@@ -154,7 +154,7 @@ public class ControllerTest {
 
         when(personServiceImp.modifyPerson(personInputDto, Integer.parseInt("1"))).thenReturn(personOutputDto);
 
-        mvc.perform(put("/persona/{id}", "1")
+        mvc.perform(put("/persona/{idRole}", "1")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(personInputDto)))
                 .andExpect(status().isOk());

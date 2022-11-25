@@ -5,7 +5,6 @@ import com.bosonit.Ej15Security.role.infrastructure.controller.Input.RoleInputDt
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -16,11 +15,11 @@ import javax.persistence.*;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "RoleTable")
     @Column
-    private Integer id;
+    private Integer idRole;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     public Role (RoleInputDto roleInputDto){

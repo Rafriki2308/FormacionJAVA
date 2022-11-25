@@ -1,4 +1,4 @@
-package com.bosonit.Ej15Security.security;
+/*package com.bosonit.Ej15Security.security.userDetail;
 
 import com.bosonit.Ej15Security.person.domain.Person;
 import com.bosonit.Ej15Security.person.infraestructure.repository.PersonRepository;
@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 
 
 //Esta clase se va a encargar de buscar el usuario a identificar en la BD
-//Y devuelve dicha persona como un UserDetailImpl
+//Y devuelve dicha persona como un UserDetailImpl, Pero me he llevado el metodo al
+//PersonImplService para unificar las clases
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
@@ -29,4 +30,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return new UserDetailImpl(person);
     }
 
-}
+}*/

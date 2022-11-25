@@ -1,13 +1,12 @@
 package com.bosonit.Ej15Security.security.filter;
 
-import com.bosonit.Ej15Security.security.AuthCredentials;
-import com.bosonit.Ej15Security.security.TokenUtils;
-import com.bosonit.Ej15Security.security.UserDetailImpl;
+import com.bosonit.Ej15Security.security.credential.AuthCredentials;
+import com.bosonit.Ej15Security.security.token.TokenUtils;
+import com.bosonit.Ej15Security.security.userDetail.UserDetailImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -15,11 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
 
 //Este es un filto para la autenticacion, comprueba si tus credenciales son correctas o no
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     //Este metodo recibe y devuelve la peticion y la respuesta, en caso que la utenticacion sea correcta o
     //en caso contrario envia una excepcion

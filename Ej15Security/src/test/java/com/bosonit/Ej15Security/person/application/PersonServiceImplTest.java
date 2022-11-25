@@ -102,17 +102,17 @@ class PersonServiceImplTest {
     @Test
     void canGetPersonById() {
         //Given
-        personTest.setId(1);
+        personTest.setIdPerson(1);
         Integer id = 1;
 
         //When
         //Esta linea asegura que cuando relice la peticion a la base de datos me devuelva personTest
-        when(personRepository.findPersonaById(id)).thenReturn(personTest);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(personTest);
 
         //Aqui Utilizo el metodo del service y tiene la peticion a repository que me devuelve lo indicado anteriormente
-        PersonOutputDto personCaptured = underTest.getPersonById(personTest.getId());
+        PersonOutputDto personCaptured = underTest.getPersonById(personTest.getIdPerson());
         //Esta linea lo unico que hace es varificar que se realiza la peticion
-        verify(personRepository).findPersonaById(id);
+        verify(personRepository).findPersonaByIdPerson(id);
 
         //Then
         Integer idCapturde = personCaptured.getId();
@@ -123,19 +123,19 @@ class PersonServiceImplTest {
     @Test
     void whenGetPersonByIdGetNullThrowsException() {
         //Given
-        personTest.setId(1);
+        personTest.setIdPerson(1);
         Integer id = 1;
 
         //When
         //Esta linea asegura que cuando relice la peticion a la base de datos me devuelva un null
-        when(personRepository.findPersonaById(id)).thenReturn(null);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(null);
 
         //When
         //Esta linea certifica que si la persona es nula, el metodo lanza excepcion
         assertThrows(EntityNotFoundException.class, () -> underTest.getPersonById(id));
 
         //Esta linea lo unico que hace es varificar que se realiza la peticion
-        verify(personRepository).findPersonaById(id);
+        verify(personRepository).findPersonaByIdPerson(id);
     }
 
     @Test
@@ -151,7 +151,7 @@ class PersonServiceImplTest {
         when(personRepository.findByName(userToFind)).thenReturn(peopleToTest);
 
         //Aqui Utilizo el metodo del service y tiene la peticion a repository que me devuelve lo indicado anteriormente
-        List<PersonOutputDto> peopleCaptured = underTest.getPersonByUser(userToFind);
+        List<PersonOutputDto> peopleCaptured = underTest.getPersonByName(userToFind);
 
         //Esta linea lo unico que hace es varificar que se realiza la peticion
         verify(personRepository).findByName(userToFind);
@@ -174,7 +174,7 @@ class PersonServiceImplTest {
 
         //Then
         //En esta linea mediante lambda usuamos el metodo y vemos que lanza excepcion
-        Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.getPersonByUser(userToFind));
+        Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.getPersonByName(userToFind));
         verify(personRepository).findByName(userToFind);
 
     }
@@ -219,7 +219,7 @@ class PersonServiceImplTest {
         Integer id = 1;
 
         //When
-        when(personRepository.findPersonaById(id)).thenReturn(personTest);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(personTest);
         underTest.deletePersonById(id);
 
         //Then
@@ -234,7 +234,7 @@ class PersonServiceImplTest {
         Integer id = 1;
 
         //When
-        when(personRepository.findPersonaById(id)).thenReturn(null);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(null);
 
         //Then
         Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.deletePersonById(id));
@@ -259,10 +259,10 @@ class PersonServiceImplTest {
                 date
         );
         Person personTest2 = new Person(personInputDtoTest2);
-        personTest2.setId(1);
+        personTest2.setIdPerson(1);
 
         //When
-        when(personRepository.findPersonaById(id)).thenReturn(personTest);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(personTest);
         when(personRepository.save(personTest2)).thenReturn(personTest2);
         PersonOutputDto personCaptured = underTest.modifyPerson(personInputDtoTest2, id);
         verify(personRepository).save(personTest2);
@@ -292,7 +292,7 @@ class PersonServiceImplTest {
         Integer id = 1;
 
         //When
-        when(personRepository.findPersonaById(id)).thenReturn(null);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(null);
 
         //Then
         Assertions.assertThrows(EntityNotFoundException.class, () -> underTest.modifyPerson(personInputDtoTest2, id));
@@ -317,10 +317,10 @@ class PersonServiceImplTest {
                 date
         );
         Person personTest2 = new Person(personInputDtoTest2);
-        personTest2.setId(1);
+        personTest2.setIdPerson(1);
 
         //When
-        when(personRepository.findPersonaById(id)).thenReturn(personTest);
+        when(personRepository.findPersonaByIdPerson(id)).thenReturn(personTest);
 
         //Then
         Assertions.assertThrows(UnprocessableEntityException.class, () -> underTest.modifyPerson(personInputDtoTest2, id));

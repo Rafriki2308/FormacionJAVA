@@ -15,7 +15,7 @@ public class RoleOutputDto {
 
 
     public RoleOutputDto(Role role) {
-        setIdRole(role.getId());
+        setIdRole(role.getIdRole());
         setRoleName(role.getName());
     }
 }

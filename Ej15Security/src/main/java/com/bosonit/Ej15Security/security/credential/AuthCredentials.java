@@ -1,12 +1,10 @@
-package com.bosonit.Ej15Security.security;
+package com.bosonit.Ej15Security.security.credential;
 
-import com.bosonit.Ej15Security.role.domain.Role;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 @Data

@@ -45,8 +45,8 @@ class PersonRepositoryTest {
         );
 
         Person personSavedTest = underTest.save(new Person(personTestDto));
-        Integer idResult = personSavedTest.getId();
-        Person personResult = underTest.findPersonaById(idResult);
+        Integer idResult = personSavedTest.getIdPerson();
+        Person personResult = underTest.findPersonaByIdPerson(idResult);
 
         assertThat(personSavedTest).isEqualTo(personResult);
     }
