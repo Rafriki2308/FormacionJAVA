@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "c1ace74d-c3d4-4dcf-a0f6-1433053fdff3",
+		"name": "Ej17.SpringSecurity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "AddPerson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTc1NDgsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.9Y301j5YSluXrfgkgHbqpsZidaCb7JMWgK0MmiffaeI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"squall\",\r\n    \"password\": \"password\",\r\n    \"name\": \"Rafael\",\r\n    \"surname\": \"Rafael\",\r\n    \"company_email\": \"Rafael.martinez@bosonit.com\",\r\n    \"personal_email\": \"Rafael@gmail.com\",\r\n    \"city\": \"Polopos\",\r\n    \"active\":true,\r\n    \"created_date\": \"2022-06-14\",\r\n    \"imagen_url\": \"image.png\",\r\n    \"termination_date\": \"2050-06-14\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/persona",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Role to Person",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTg1MDEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.yJWC3zOgv3juRusfQGQKor0dMUgzDWxUsAtXKNOjA1M",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/persona/addRoleToUser?username=squall&roleName=ROLE_ADMIN",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"addRoleToUser"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "squall"
+										},
+										{
+											"key": "roleName",
+											"value": "ROLE_ADMIN"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeletePerson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/persona/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePerson",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTg1MDEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.yJWC3zOgv3juRusfQGQKor0dMUgzDWxUsAtXKNOjA1M",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"lorena\",\r\n    \"password\": \"password2\",\r\n    \"name\": \"Lorena\",\r\n    \"surname\": \"Lorena\",\r\n    \"company_email\": \"Rafael.martinez@bosonit.com\",\r\n    \"personal_email\": \"Lorenal@gmail.com\",\r\n    \"city\": \"Polopos\",\r\n    \"active\": true,\r\n    \"created_date\": \"2022-06-14\",\r\n    \"imagen_url\": \"image.png\",\r\n    \"termination_date\": \"2050-06-14\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/persona/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "GetAllPeople",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/persona/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPersonById",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTg1MDEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.yJWC3zOgv3juRusfQGQKor0dMUgzDWxUsAtXKNOjA1M",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/persona/getPersonById/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"getPersonById",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPersonByName",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/persona/getPersonByName/Rafael",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"persona",
+										"getPersonByName",
+										"Rafael"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Add Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE4ODc5MjEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsIm5hbWUiOiJyYWZhZWwifQ.Wm75JLnA1EW4trwxKiMRP1WRfEQJlnaQwu6mZJDHEtI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleName\": \"ROLE_SUPERUSER\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetrRoleById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": " eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/role/getRoleById/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role",
+								"getRoleById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Roles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTc1NDgsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.9Y301j5YSluXrfgkgHbqpsZidaCb7JMWgK0MmiffaeI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/role/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": " eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/role/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": " eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE5NTkzMjMsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.va8mOjTQhvveDHCadXANH-og-IkH4NNvvStuMV_XuI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roleName\": \"ROLE_SUPERUSER2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/role/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"role",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSYWZhZWwiLCJleHAiOjE2NzE4ODc5MjEsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsIm5hbWUiOiJyYWZhZWwifQ.Wm75JLnA1EW4trwxKiMRP1WRfEQJlnaQwu6mZJDHEtI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"rafael\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
