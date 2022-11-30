@@ -1,8 +1,8 @@
-package com.bosonit.FronEnd.ticket;
+package com.bosonit.FronEnd.ticket.domain;
 
 
-import FrontEnd.trip.Trip;
-import com.bosonit.FronEnd.customer.Customer;
+import com.bosonit.FronEnd.trip.domain.Trip;
+import com.bosonit.FronEnd.customer.domain.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,7 +51,7 @@ public class Ticket {
         setPassengerSurname(customer.getSurname());
         setPassengerEmail(customer.getEmail());
         setOriginTrip(trip.getOrigin());
-        setDestinationTrip(getDestinationTrip());
+        setDestinationTrip(trip.getDestination());
         setDepartureDate(trip.getDepartureDate());
         setArrivalDate(trip.getArrivalDate());
     }
