@@ -4,6 +4,7 @@ import com.bosonit.BackEnd.customer.application.CustomerServiceImp;
 import com.bosonit.BackEnd.customer.infrastructure.controller.output.CustomerOutDto;
 import com.bosonit.BackEnd.customer.infrastructure.controller.input.CustomerInputDto;
 import com.bosonit.BackEnd.exceptions.EntityNotFoundException;
+import com.bosonit.BackEnd.trip.infrastructure.controller.output.TripOutDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,9 @@ public class CustomerController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<?> getCustomerById(@PathVariable String id){
+    public Object getCustomerById(@PathVariable String id){
         try {
-            return new ResponseEntity<>(customerImp.getCustomerById(id),HttpStatus.FOUND);
+             return customerImp.getCustomerById(id);
         }catch (EntityNotFoundException e){
             return ResponseEntity.badRequest().body("Customer doesn't exists");
         }

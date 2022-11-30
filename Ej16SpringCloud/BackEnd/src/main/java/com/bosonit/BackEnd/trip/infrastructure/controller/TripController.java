@@ -38,9 +38,9 @@ public class TripController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<?> getTripById(@PathVariable String id){
+    public Object getTripById(@PathVariable String id){
         try {
-            return new ResponseEntity<>(tService.getTripById(id),HttpStatus.FOUND);
+            return tService.getTripById(id);
         }catch (EntityNotFoundException e){
             return ResponseEntity.badRequest().body("Trip doesn't exists");
         }
