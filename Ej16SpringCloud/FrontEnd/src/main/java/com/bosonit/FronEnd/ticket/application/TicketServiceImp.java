@@ -28,7 +28,13 @@ public class TicketServiceImp implements TicketService {
     public Object generateTicket(String idCustomer, String idTrip) {
 
         Customer customer = new Customer(customerF.findById(idCustomer));
+        if(customer.equals(null)){
+            throw new EntityNotFoundException("The customer doesn't exists");
+        }
         Trip trip = new Trip(tripF.findById(idTrip));
+        if(trip.equals(null)){
+            throw new EntityNotFoundException("The trip doesn't exits");
+        }
         tripF.addPassengerToTrip(idTrip,idCustomer);
 
         return new TicketOutDto(ticketRepository.save(new Ticket(customer,trip)));

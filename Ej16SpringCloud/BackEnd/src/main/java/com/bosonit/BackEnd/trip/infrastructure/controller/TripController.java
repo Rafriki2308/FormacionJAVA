@@ -38,11 +38,20 @@ public class TripController {
     }
 
     @GetMapping("/getById/{id}")
-    public Object getTripById(@PathVariable String id){
+    public ResponseEntity<? extends Object> getTripById(@PathVariable String id){
+        try {
+            return new ResponseEntity<>(tService.getTripById(id),HttpStatus.ACCEPTED);
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.badRequest().body("Trip doesn't exists");
+        }
+    }
+
+    @GetMapping("/getByIdByFeing/{id}")
+    public Object getTripByIdByFeing(@PathVariable String id){
         try {
             return tService.getTripById(id);
         }catch (EntityNotFoundException e){
-            return ResponseEntity.badRequest().body("Trip doesn't exists");
+            return null;
         }
     }
 

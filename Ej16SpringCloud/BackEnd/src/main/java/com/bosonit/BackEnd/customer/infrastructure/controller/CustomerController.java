@@ -36,11 +36,20 @@ public class CustomerController {
     }
 
     @GetMapping("/getById/{id}")
-    public Object getCustomerById(@PathVariable String id){
+    public ResponseEntity<? extends Object> getCustomerById(@PathVariable String id){
         try {
-             return customerImp.getCustomerById(id);
+            return new ResponseEntity<>(customerImp.getCustomerById(id), HttpStatus.CREATED);
         }catch (EntityNotFoundException e){
             return ResponseEntity.badRequest().body("Customer doesn't exists");
+        }
+    }
+
+    @GetMapping("/getByIdByFeing/{id}")
+    public Object getCustomerByIdByFeing(@PathVariable String id){
+        try {
+            return customerImp.getCustomerById(id);
+        }catch (EntityNotFoundException e){
+            return null;
         }
     }
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @FeignClient(name="trip-frontend", url = "http://localhost:8081")
 public interface TripService {
 
-    @GetMapping("trip/getById/{id}")
+    @GetMapping("trip/getByIdByFeing/{id}")
     public TripOutDto findById(@PathVariable String id);
 
     @PutMapping("trip/addPassenger/{idTrip}/{idPassenger}")
