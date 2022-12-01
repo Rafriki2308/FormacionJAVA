@@ -1,6 +1,8 @@
 package com.bosonit.FronEnd.ticket.infrastructure.controller;
 
 import com.bosonit.FronEnd.customer.infrastructure.output.CustomerOutDto;
+import com.bosonit.FronEnd.exceptions.EntityNotFoundException;
+import com.bosonit.FronEnd.exceptions.PassengerAlreadyInTrip;
 import com.bosonit.FronEnd.ticket.application.TicketServiceImp;
 import com.bosonit.FronEnd.ticket.infrastructure.controller.output.TicketOutDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,13 @@ public class TicketController {
     private TicketServiceImp tService;
 
     @GetMapping("/generateTicket/{userId}/{tripId}")
-    public Object generateTicket(@PathVariable String userId, @PathVariable String tripId){
-        return tService.generateTicket(userId, tripId);
+    public ResponseEntity<? extends Object> generateTicket(@PathVariable String userId, @PathVariable String tripId) {
+        try {
+            return new ResponseEntity<>(tService.generateTicket(userId, tripId), HttpStatus.ACCEPTED);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.badRequest().body("Trip or customer doesn't exists");
+        } catch (PassengerAlreadyInTrip e) {
+            return ResponseEntity.badRequest().body("This passenger has already been added to this trip");
+        }
     }
 }

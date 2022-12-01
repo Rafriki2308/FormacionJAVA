@@ -27,4 +27,10 @@ public class ExeptionManager {
         return new ResponseEntity<>(customErrorInfo, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(PassengerAlreadyInTrip.class)
+    public ResponseEntity<CustomError> methodPassengerAlreadyInTrip(UnprocessableEntityException e) {
+        CustomError customErrorInfo = new CustomError(HttpStatus.CONFLICT.value(), e.getMessage());
+        return new ResponseEntity<>(customErrorInfo, HttpStatus.CONFLICT);
+    }
+
 }
