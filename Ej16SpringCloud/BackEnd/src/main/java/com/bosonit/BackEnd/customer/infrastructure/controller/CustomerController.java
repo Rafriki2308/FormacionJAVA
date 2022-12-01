@@ -6,6 +6,7 @@ import com.bosonit.BackEnd.customer.infrastructure.controller.input.CustomerInpu
 import com.bosonit.BackEnd.exceptions.EntityNotFoundException;
 import com.bosonit.BackEnd.trip.infrastructure.controller.output.TripOutDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
