@@ -33,17 +33,39 @@ public class TicketServiceImp implements TicketService {
     public Object generateTicket(String idCustomer, String idTrip) throws EntityNotFoundException
             , PassengerAlreadyInTrip {
 
-        Customer customer = new Customer(customerF.findById(idCustomer));
-        CustomerOutDto customerOutDto =customerF.findById(idCustomer);
+        Customer customer=null;
+        CustomerOutDto customerOutDto = null;
+        Trip trip = null;
+
+        //Este bloque comprueba si el cliente existe en caso contrario envia una excepcion
+        try {
+            customer = new Customer(customerF.findById(idCustomer));
+
+        }catch (NullPointerException e){
+            throw new EntityNotFoundException("This customer doesn't exists");
+        }
+
         if (customer.equals(null)) {
             throw new EntityNotFoundException("The customer doesn't exists");
         }
 
-        Trip trip = new Trip(tripF.findById(idTrip));
-        log.info(String.valueOf(trip));
+
+        //Este bloque comprueba si el viaje existe en caso contrario envia una excepcion
+        try {
+            trip = new Trip(tripF.findById(idTrip));
+
+        }catch (NullPointerException e){
+            throw new EntityNotFoundException("This customer doesn't exists");
+        }
+
+
         if (trip.equals(null)) {
             throw new EntityNotFoundException("The trip doesn't exits");
         }
+
+        //Este bloque comprueba que el pasagero no este ya en dicho viaje en caso
+        //que ya este en el viaje envia una excepcion
+        customerOutDto =customerF.findById(idCustomer);
         if (trip.getPassengers().contains(customerOutDto)) {
             throw new PassengerAlreadyInTrip("This passanger is already in this trip");
         }
