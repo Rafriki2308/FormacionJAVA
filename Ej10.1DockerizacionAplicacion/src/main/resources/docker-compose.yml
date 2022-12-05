@@ -4,7 +4,7 @@ services:
     container_name: postgres2
     image: postgres:latest
     ports:
-      - '5432:5432'
+      - '54320:5432'
 
     environment:
       - POSTGRES_USER=postgres

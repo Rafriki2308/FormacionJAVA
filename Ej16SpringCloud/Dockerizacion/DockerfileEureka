@@ -1,0 +1,4 @@
+FROM openjdk:17
+EXPOSE 8761
+COPY Jar/netfilx-eureka-naming-server-0.0.1-SNAPSHOT.jar /usr/local/lib/eureka.jar
+ENTRYPOINT ["java","-jar","/usr/local/lib/eureka.jar"]

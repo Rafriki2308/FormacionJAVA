@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Bean;
 
 public class SpringCloudGatewayRouting {
 
-    @Bean
+    /*@Bean
     public RouteLocator configureRoute(RouteLocatorBuilder builder){
         return builder.routes()
                 .route("customer", r->r.path("/customer/all").uri("lb://BACKEND"))
                 .route("trip",r->r.path("/trip/**").uri("http://localhost:8081"))
                 .build();
-    }
+    }*/
 }
